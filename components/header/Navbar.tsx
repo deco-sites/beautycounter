@@ -12,6 +12,7 @@ function NavItem({
     "py-2",
     "border-b-2",
     "font-normal",
+    "text-sm",
     "border-solid",
     "border-white",
     "hover:border-black",
@@ -63,7 +64,7 @@ function Navbar({ items }: {
           </div>
         </div>
 
-        <div class="flex-grow flex gap-6 justify-center">
+        <div class="flex-grow flex gap-10 justify-center">
           {items.map((item) => <NavItem {...item} />)}
         </div>
       </div>
