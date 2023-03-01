@@ -57,7 +57,7 @@ const options: Omit<Options, "selfURL"> = {
         primary: "#2FD180",
         "primary-green-light": "#2EAE80",
         "primary-green-dark": "#177151",
-        "primary-dark": "#221E1F",
+        "primary-dark": "#231f20",
         "primary-light": "#f4f4f4",
         "custom-brown": "#f8f5f1",
         "custom-gray": "#f4f4f4",
@@ -67,21 +67,27 @@ const options: Omit<Options, "selfURL"> = {
 
         // Tokens from Design System
         "default": "#FFFFFF",
-        "decorative-one": "#003232",
-        "decorative-two": "#8C3D3D",
-        "interactive-default": "#161616",
-        "dark-interactive-default": "#FFFFFF",
+        "decorative-one": "#339185",
+        "decorative-two": "#fcea6e",
+        "decorative-three": "#b9dbf6",
+        "decorative-four": "#f66b66",
+        "decorative-five": "#e26b87",
+        "interactive-default": "#FFFFFF",
+        "dark-interactive-default": "#161616",
         "icon-brand": "#2FD180",
         "icon-subdued": "#66736C",
       },
       textColor: {
-        default: "#161616",
-        subdued: "#66736C",
-        critical: "#B44125",
-        "interactive-default": "#F4F4F4",
+        default: "#231f20",
+        subdued: "#73777c",
+        critical: "#339185",
+        "interactive-default": "#FFFFFF",
+        "dark-interactive-default": "#161616",
       },
       borderColor: {
         default: "#D4DBD7",
+        "interactive-default": "#FFFFFF",
+        "dark-interactive-default": "#161616",
       },
       fontSize: {
         "body-regular": ["15px", "20px"],
@@ -128,6 +134,7 @@ const options: Omit<Options, "selfURL"> = {
     fontFamily: {
       sans: ["Albert Sans", "sans-serif"],
       serif: ["inherit", "serif"],
+      button: ["Helvetica", "sans-serif"],
     },
     screens: {
       sm: "640px",

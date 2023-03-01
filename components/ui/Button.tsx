@@ -9,19 +9,39 @@ export type Props =
   & {
     as?: keyof JSX.IntrinsicElements | ComponentType;
     variant?: keyof typeof variants;
+    theme?: "dark" | "light";
+    size?: "large" | "small";
     loading?: boolean;
   };
 
 const variants = {
-  default:
-    "py-2 px-3 text-body-strong font-body-strong text-interactive-default bg-interactive-default disabled:dark-interactive-default border-transparent",
-  quiet:
-    "py-2 px-3 text-body-regular font-body-regular text-default border-default",
-  icon: "text-default border-transparent disabled:opacity-50 bg-transparent",
+  default: {
+    base: "font-bold border-transparent disabled:dark-interactive-default",
+    dark: "bg-dark-interactive-default text-interactive-default",
+    light: "text-dark-interactive-default bg-interactive-default",
+    large: "py-3 px-12 text-sm uppercase",
+    small: "text-xs py-0.5 px-6 uppercase",
+  },
+  quiet: {
+    base: "uppercase font-medium",
+    dark: "border-dark-interactive-default text-dark-interactive-default",
+    light: "border-interactive-default text-interactive-default",
+    large: "py-3 px-12 font-bold text-sm",
+    small: "text-xs py-0.5 px-6",
+  },
+  icon: {
+    base: "text-default border-transparent disabled:opacity-50 bg-transparent",
+    dark: "",
+    light: "",
+    large: "",
+    small: "",
+  },
 };
 
 const Button = forwardRef<HTMLButtonElement, Props>(({
   variant = "default",
+  size = "large",
+  theme = "dark",
   as = "button",
   class: _class = "",
   children,
@@ -29,11 +49,17 @@ const Button = forwardRef<HTMLButtonElement, Props>(({
   ...props
 }, ref) => {
   const Component = as as ComponentType;
-  const styles = variants[variant];
+  const variantStyles = variants[variant];
+
+  const styles = [
+    variantStyles.base,
+    variantStyles[size],
+    variantStyles[theme],
+  ].join(" ");
 
   return (
     <Component
-      className={`inline-flex items-center justify-center gap-2 cursor-pointer transition-colors duration-150 ease-in rounded border-1 focus:outline-none ${styles} ${_class}`}
+      className={`whitespace-nowrap font-button tracking-widest	inline-flex items-center justify-center gap-2 cursor-pointer transition-colors duration-150 ease-in rounded border-1 focus:outline-none ${styles} ${_class}`}
       {...props}
       ref={ref}
     >
