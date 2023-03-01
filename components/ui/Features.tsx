@@ -18,34 +18,40 @@ export interface Feature {
 }
 
 export interface Props {
+  title: string;
+  description: string;
   features: Feature[];
 }
 
-function FeatureHighlights(
-  { features }: Props,
-) {
+function FeatureHighlights(props: Props) {
+  const { features, title, description } = props;
   return (
-    <Container class="min-h-[280px] p-6 sm:px-0 sm:py-10">
-      <div class="border-default border-1">
-        <div class="flex flex-col justify-evenly sm:flex-row divide-y-1 sm:divide-y-0 sm:divide-x-1 divide-default mx-6 sm:mx-0 sm:my-10">
-          {features.map(({ icon: id = "Truck", title, description }) => (
-            <div class="flex flex-row sm:flex-col gap-4 py-6 sm:py-0 sm:px-10">
-              <Icon
-                class="text-icon-brand"
-                id={id}
-                width={40}
-                height={40}
-                strokeWidth={2}
-              />
-              <div class="flex flex-col gap-2">
-                <Text variant="heading-strong">{title}</Text>
-                <Text tone="subdued" variant="caption-regular">
-                  {description}
-                </Text>
-              </div>
+    <Container class="min-h-[280px] px-6 py-12 md:px-10 md:py-20 flex items-center justify-center flex-col">
+      <h3 class="font-title text-7xl text-center">{title}</h3>
+      <p class="max-w-[950px] text-center mt-6 text-lg">{description}</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 justify-items-center mt-16">
+        {features.map(({ icon: id = "Truck", title, description }) => (
+          <div class="group flex flex-col gap-4 items-center lg:max-w-[230px]">
+            <Icon
+              id={id}
+              width={100}
+              height={100}
+              strokeWidth={0.5}
+              class="text-default group-hover:scale-110 transition-all"
+            />
+
+            <div class="flex flex-col gap-2 text-center">
+              <Text variant="heading-strong" class="text-2xl">
+                {title}
+              </Text>
+
+              <Text tone="subdued" class="text-sm">
+                {description}
+              </Text>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </Container>
   );

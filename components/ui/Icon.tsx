@@ -27,7 +27,11 @@ export type AvailableIcons =
   | "Deco"
   | "Discord"
   | "FilterList"
-  | "ChevronUp";
+  | "ChevronUp"
+  | "ProvenResults"
+  | "IngredientsSafety"
+  | "SustainablyDesigned"
+  | "Advocacy";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

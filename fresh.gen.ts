@@ -224,6 +224,14 @@ const manifest: DecoManifest = {
         "title": " Features",
         "type": "object",
         "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+          },
+          "description": {
+            "type": "string",
+            "title": "Description",
+          },
           "features": {
             "type": "array",
             "items": {
@@ -337,6 +345,22 @@ const manifest: DecoManifest = {
                       "type": "string",
                       "const": "ChevronUp",
                     },
+                    {
+                      "type": "string",
+                      "const": "ProvenResults",
+                    },
+                    {
+                      "type": "string",
+                      "const": "IngredientsSafety",
+                    },
+                    {
+                      "type": "string",
+                      "const": "SustainablyDesigned",
+                    },
+                    {
+                      "type": "string",
+                      "const": "Advocacy",
+                    },
                   ],
                   "title": "Icon",
                   "description": "Image src",
@@ -362,6 +386,8 @@ const manifest: DecoManifest = {
           },
         },
         "required": [
+          "title",
+          "description",
           "features",
         ],
       },
@@ -515,6 +541,22 @@ const manifest: DecoManifest = {
                               {
                                 "type": "string",
                                 "const": "ChevronUp",
+                              },
+                              {
+                                "type": "string",
+                                "const": "ProvenResults",
+                              },
+                              {
+                                "type": "string",
+                                "const": "IngredientsSafety",
+                              },
+                              {
+                                "type": "string",
+                                "const": "SustainablyDesigned",
+                              },
+                              {
+                                "type": "string",
+                                "const": "Advocacy",
                               },
                             ],
                             "title": "Icon",
