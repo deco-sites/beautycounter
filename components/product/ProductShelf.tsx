@@ -21,20 +21,18 @@ function ProductShelf({
           <Text class="uppercase" variant="subheading-strong">{title}</Text>
         </h2>
       )}
-      <Slider>
-        {products?.map((product, index) => {
-          const ml = index === 0 ? "ml-4" : "";
-          const mr = index === products.length - 1 ? "mr-4" : "";
+      {products?.map((product, index) => {
+        const ml = index === 0 ? "ml-4" : "";
+        const mr = index === products.length - 1 ? "mr-4" : "";
 
-          return (
-            <div
-              class={`min-w-[220px] max-w-[220px] sm:min-w-[287px] sm:max-w-[287px] ${ml} ${mr}`}
-            >
-              <ProductCard key={index} product={product} />
-            </div>
-          );
-        })}
-      </Slider>
+        return (
+          <div
+            class={`min-w-[220px] max-w-[220px] sm:min-w-[287px] sm:max-w-[287px] ${ml} ${mr}`}
+          >
+            <ProductCard key={index} product={product} />
+          </div>
+        );
+      })}
     </Container>
   );
 }
