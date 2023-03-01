@@ -72,7 +72,7 @@ export function NavItem(props: NavItem) {
         {label}
       </a>
 
-      <div class="hidden absolute w-full left-0 mt-2 border-t-1 shadow-md flex-row px-24 py-6 group-hover:flex">
+      <div class="bg-default hidden absolute w-full left-0 mt-2 border-t-1 shadow-md flex-row px-24 py-6 group-hover:flex">
         {renderImage()}
         {renderChildren()}
         {renderShop()}
