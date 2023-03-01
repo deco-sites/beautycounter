@@ -25,15 +25,16 @@ import * as $$$3 from "./sections/Footer.tsx";
 import * as $$$4 from "./sections/Head.tsx";
 import * as $$$5 from "./sections/Header.tsx";
 import * as $$$6 from "./sections/Highlights.tsx";
-import * as $$$7 from "./sections/ProductDetails.tsx";
-import * as $$$8 from "./sections/ProductGallery.tsx";
-import * as $$$9 from "./sections/ProductShelf.tsx";
-import * as $$$10 from "./sections/SearchControls.tsx";
-import * as $$$11 from "./sections/Seo.tsx";
-import * as $$$12 from "./sections/SeoPDP.tsx";
-import * as $$$13 from "./sections/SeoPLP.tsx";
-import * as $$$14 from "./sections/vtexconfig.global.tsx";
-import * as $$$15 from "$live/sections/Head.tsx";
+import * as $$$7 from "./sections/JoinUs.tsx";
+import * as $$$8 from "./sections/ProductDetails.tsx";
+import * as $$$9 from "./sections/ProductGallery.tsx";
+import * as $$$10 from "./sections/ProductShelf.tsx";
+import * as $$$11 from "./sections/SearchControls.tsx";
+import * as $$$12 from "./sections/Seo.tsx";
+import * as $$$13 from "./sections/SeoPDP.tsx";
+import * as $$$14 from "./sections/SeoPLP.tsx";
+import * as $$$15 from "./sections/vtexconfig.global.tsx";
+import * as $$$16 from "$live/sections/Head.tsx";
 import * as $$$$0 from "./functions/occProductDetailsPage.ts";
 import * as $$$$1 from "./functions/shopifyProductDetailsPage.ts";
 import * as $$$$2 from "./functions/shopifyProductList.ts";
@@ -77,15 +78,16 @@ const manifest: DecoManifest = {
     "./sections/Head.tsx": $$$4,
     "./sections/Header.tsx": $$$5,
     "./sections/Highlights.tsx": $$$6,
-    "./sections/ProductDetails.tsx": $$$7,
-    "./sections/ProductGallery.tsx": $$$8,
-    "./sections/ProductShelf.tsx": $$$9,
-    "./sections/SearchControls.tsx": $$$10,
-    "./sections/Seo.tsx": $$$11,
-    "./sections/SeoPDP.tsx": $$$12,
-    "./sections/SeoPLP.tsx": $$$13,
-    "./sections/vtexconfig.global.tsx": $$$14,
-    "$live/sections/Head.tsx": $$$15,
+    "./sections/JoinUs.tsx": $$$7,
+    "./sections/ProductDetails.tsx": $$$8,
+    "./sections/ProductGallery.tsx": $$$9,
+    "./sections/ProductShelf.tsx": $$$10,
+    "./sections/SearchControls.tsx": $$$11,
+    "./sections/Seo.tsx": $$$12,
+    "./sections/SeoPDP.tsx": $$$13,
+    "./sections/SeoPLP.tsx": $$$14,
+    "./sections/vtexconfig.global.tsx": $$$15,
+    "$live/sections/Head.tsx": $$$16,
   },
   functions: {
     "./functions/occProductDetailsPage.ts": $$$$0,
@@ -756,6 +758,37 @@ const manifest: DecoManifest = {
         },
         "required": [
           "title",
+        ],
+      },
+      "outputSchema": null,
+    },
+    "./sections/JoinUs.tsx": {
+      "inputSchema": {
+        "title": " Join Us",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "The title of this section",
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "The content of this section",
+          },
+          "cards": {
+            "type": [
+              "string",
+              "null",
+            ],
+            "title": "Cards",
+            "description": "The configuration of the cards of this section",
+          },
+        },
+        "required": [
+          "title",
+          "content",
         ],
       },
       "outputSchema": null,
