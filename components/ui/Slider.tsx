@@ -126,12 +126,12 @@ function Slider(
         })}
       </ol>
       {!!dot && (
-        <aside class="absolute right-0 bottom-0 left-0 text-center">
+        <aside class="absolute right-8 lg:right-16 bottom-2">
           <ol class="inline-block" data-carousel-navigation>
             {childrenArray.map((_, index) => {
               return (
                 <li
-                  class="inline-block p-2 rounded-full text-white outline-none"
+                  class="inline-block px-0.5 rounded-full text-white outline-none"
                   data-carousel-item
                 >
                   <a
