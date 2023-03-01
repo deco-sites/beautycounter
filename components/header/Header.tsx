@@ -4,34 +4,14 @@ import type { LoaderReturnType } from "$live/std/types.ts";
 import type { Product } from "$live/std/commerce/types.ts";
 import type { EditableProps as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 
-import Navbar from "./Navbar.tsx";
+import Navbar from "./navbar/Navbar.tsx";
 import Alert from "$store/islands/Alert.tsx";
-import type { NavItem as Item } from "./NavItem.ts";
-
-const item: Item[] = [
-  {
-    label: "Sale",
-    href: "/brindes",
-    children: [],
-  },
-  {
-    label: "Feminino",
-    href: "/feminino",
-    children: [
-      { label: "Roupas", href: "/feminino/roupas" },
-    ],
-  },
-  {
-    label: "Masculino",
-    href: "/masculino",
-    children: [
-      { label: "Polos", href: "/masculino/polos" },
-      { label: "Shorts", href: "/masculino/shorts" },
-    ],
-  },
-];
+import type { NavItem as Item } from "./navbar/interfaces.ts";
 
 export interface Props {
+  /**
+   * @title Alerts
+   */
   alerts: EditableAlert[];
 
   /** @title Search Bar */
@@ -41,7 +21,7 @@ export interface Props {
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
    */
-  navItems?: Item[];
+  navItems: Item[];
 
   /**
    * @title Product suggestions
@@ -50,7 +30,7 @@ export interface Props {
   products?: LoaderReturnType<Product[]>;
 }
 
-function Header({ alerts, searchbar, products, navItems = item }: Props) {
+function Header({ alerts, searchbar, products, navItems }: Props) {
   return (
     <header class="h-[93px]">
       <div class="bg-default fixed w-full z-50">

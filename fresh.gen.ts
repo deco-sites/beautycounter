@@ -608,18 +608,18 @@ const manifest: DecoManifest = {
               "title": "Item",
               "type": "object",
               "properties": {
-                "label": {
-                  "type": "string",
-                  "title": "Label",
-                },
                 "href": {
                   "type": "string",
                   "title": "Href",
                 },
+                "label": {
+                  "type": "string",
+                  "title": "Label",
+                },
                 "children": {
-                  "title": "Children",
                   "type": "array",
                   "items": {
+                    "title": "NavLink",
                     "type": "object",
                     "properties": {
                       "label": {
@@ -629,6 +629,7 @@ const manifest: DecoManifest = {
                       "href": {
                         "type": "string",
                         "title": "Href",
+                        "default": "/",
                       },
                     },
                     "required": [
@@ -636,12 +637,41 @@ const manifest: DecoManifest = {
                       "href",
                     ],
                   },
+                  "title": "Children",
+                },
+                "featured": {
+                  "type": "array",
+                  "items": {
+                    "title": "NavLink",
+                    "type": "object",
+                    "properties": {
+                      "label": {
+                        "type": "string",
+                        "title": "Label",
+                      },
+                      "href": {
+                        "type": "string",
+                        "title": "Href",
+                        "default": "/",
+                      },
+                    },
+                    "required": [
+                      "label",
+                      "href",
+                    ],
+                  },
+                  "title": "Featured",
+                },
+                "image": {
+                  "format": "image-uri",
+                  "type": "string",
+                  "title": "Image",
+                  "description": "image to be shown inside the megamenu",
                 },
               },
               "required": [
-                "label",
                 "href",
-                "children",
+                "label",
               ],
             },
             "title": "Navigation items",
@@ -658,6 +688,7 @@ const manifest: DecoManifest = {
         },
         "required": [
           "alerts",
+          "navItems",
         ],
       },
       "outputSchema": null,
