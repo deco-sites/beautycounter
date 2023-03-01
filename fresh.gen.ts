@@ -140,15 +140,33 @@ const manifest: DecoManifest = {
                   "title": "Alt",
                   "description": "Image's alt text",
                 },
+                "title": {
+                  "type": "string",
+                  "title": "Title",
+                  "description": "slide title",
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description",
+                  "description": "slide description",
+                },
+                "cta": {
+                  "type": "string",
+                  "title": "Call to action",
+                },
               },
               "required": [
                 "desktop",
                 "mobile",
                 "href",
                 "alt",
+                "title",
+                "description",
+                "cta",
               ],
             },
             "title": "Images",
+            "description": "List of images to display in the carousel",
           },
           "preload": {
             "type": [
