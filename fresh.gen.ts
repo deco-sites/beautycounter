@@ -18,23 +18,24 @@ import * as $$3 from "./islands/HeaderModals.tsx";
 import * as $$4 from "./islands/LiveControls.tsx";
 import * as $$5 from "./islands/SearchControls.tsx";
 import * as $$6 from "./islands/Slick.tsx";
-import * as $$$0 from "./sections/Carousel.tsx";
-import * as $$$1 from "./sections/DesignSystem.story.tsx";
-import * as $$$2 from "./sections/Features.tsx";
-import * as $$$3 from "./sections/Footer.tsx";
-import * as $$$4 from "./sections/Head.tsx";
-import * as $$$5 from "./sections/Header.tsx";
-import * as $$$6 from "./sections/Highlights.tsx";
-import * as $$$7 from "./sections/JoinUs.tsx";
-import * as $$$8 from "./sections/ProductDetails.tsx";
-import * as $$$9 from "./sections/ProductGallery.tsx";
-import * as $$$10 from "./sections/ProductShelf.tsx";
-import * as $$$11 from "./sections/SearchControls.tsx";
-import * as $$$12 from "./sections/Seo.tsx";
-import * as $$$13 from "./sections/SeoPDP.tsx";
-import * as $$$14 from "./sections/SeoPLP.tsx";
-import * as $$$15 from "./sections/vtexconfig.global.tsx";
-import * as $$$16 from "$live/sections/Head.tsx";
+import * as $$$0 from "./sections/Advocate.tsx";
+import * as $$$1 from "./sections/Carousel.tsx";
+import * as $$$2 from "./sections/DesignSystem.story.tsx";
+import * as $$$3 from "./sections/Features.tsx";
+import * as $$$4 from "./sections/Footer.tsx";
+import * as $$$5 from "./sections/Head.tsx";
+import * as $$$6 from "./sections/Header.tsx";
+import * as $$$7 from "./sections/Highlights.tsx";
+import * as $$$8 from "./sections/JoinUs.tsx";
+import * as $$$9 from "./sections/ProductDetails.tsx";
+import * as $$$10 from "./sections/ProductGallery.tsx";
+import * as $$$11 from "./sections/ProductShelf.tsx";
+import * as $$$12 from "./sections/SearchControls.tsx";
+import * as $$$13 from "./sections/Seo.tsx";
+import * as $$$14 from "./sections/SeoPDP.tsx";
+import * as $$$15 from "./sections/SeoPLP.tsx";
+import * as $$$16 from "./sections/vtexconfig.global.tsx";
+import * as $$$17 from "$live/sections/Head.tsx";
 import * as $$$$0 from "./functions/occProductDetailsPage.ts";
 import * as $$$$1 from "./functions/shopifyProductDetailsPage.ts";
 import * as $$$$2 from "./functions/shopifyProductList.ts";
@@ -71,23 +72,24 @@ const manifest: DecoManifest = {
     "./islands/Slick.tsx": $$6,
   },
   sections: {
-    "./sections/Carousel.tsx": $$$0,
-    "./sections/DesignSystem.story.tsx": $$$1,
-    "./sections/Features.tsx": $$$2,
-    "./sections/Footer.tsx": $$$3,
-    "./sections/Head.tsx": $$$4,
-    "./sections/Header.tsx": $$$5,
-    "./sections/Highlights.tsx": $$$6,
-    "./sections/JoinUs.tsx": $$$7,
-    "./sections/ProductDetails.tsx": $$$8,
-    "./sections/ProductGallery.tsx": $$$9,
-    "./sections/ProductShelf.tsx": $$$10,
-    "./sections/SearchControls.tsx": $$$11,
-    "./sections/Seo.tsx": $$$12,
-    "./sections/SeoPDP.tsx": $$$13,
-    "./sections/SeoPLP.tsx": $$$14,
-    "./sections/vtexconfig.global.tsx": $$$15,
-    "$live/sections/Head.tsx": $$$16,
+    "./sections/Advocate.tsx": $$$0,
+    "./sections/Carousel.tsx": $$$1,
+    "./sections/DesignSystem.story.tsx": $$$2,
+    "./sections/Features.tsx": $$$3,
+    "./sections/Footer.tsx": $$$4,
+    "./sections/Head.tsx": $$$5,
+    "./sections/Header.tsx": $$$6,
+    "./sections/Highlights.tsx": $$$7,
+    "./sections/JoinUs.tsx": $$$8,
+    "./sections/ProductDetails.tsx": $$$9,
+    "./sections/ProductGallery.tsx": $$$10,
+    "./sections/ProductShelf.tsx": $$$11,
+    "./sections/SearchControls.tsx": $$$12,
+    "./sections/Seo.tsx": $$$13,
+    "./sections/SeoPDP.tsx": $$$14,
+    "./sections/SeoPLP.tsx": $$$15,
+    "./sections/vtexconfig.global.tsx": $$$16,
+    "$live/sections/Head.tsx": $$$17,
   },
   functions: {
     "./functions/occProductDetailsPage.ts": $$$$0,
@@ -108,6 +110,35 @@ const manifest: DecoManifest = {
     "$live/functions/MatchUserAgent.ts": $$$$15,
   },
   schemas: {
+    "./sections/Advocate.tsx": {
+      "inputSchema": {
+        "title": " Advocate",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "The title of this section",
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "The content of this section",
+          },
+          "cta": {
+            "type": "string",
+            "title": "Cards",
+            "description": "The configuration of the cards of this section",
+          },
+        },
+        "required": [
+          "title",
+          "content",
+          "cta",
+        ],
+      },
+      "outputSchema": null,
+    },
     "./sections/Carousel.tsx": {
       "inputSchema": {
         "title": " Carousel",
