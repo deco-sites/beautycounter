@@ -809,10 +809,36 @@ const manifest: DecoManifest = {
             "description": "The content of this section",
           },
           "cards": {
-            "type": [
-              "string",
-              "null",
-            ],
+            "type": "array",
+            "items": {
+              "title": "Card",
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "title": "Title",
+                },
+                "description": {
+                  "type": "string",
+                  "title": "Description",
+                },
+                "cta": {
+                  "type": "string",
+                  "title": "Cta",
+                },
+                "image": {
+                  "format": "image-uri",
+                  "type": "string",
+                  "title": "Image",
+                },
+              },
+              "required": [
+                "title",
+                "description",
+                "cta",
+                "image",
+              ],
+            },
             "title": "Cards",
             "description": "The configuration of the cards of this section",
           },
@@ -820,6 +846,7 @@ const manifest: DecoManifest = {
         "required": [
           "title",
           "content",
+          "cards",
         ],
       },
       "outputSchema": null,

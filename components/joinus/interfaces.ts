@@ -1,3 +1,11 @@
+import { Image as LiveImage } from "$live/std/ui/types/Image.ts";
+export interface Card {
+  title: string;
+  description: string;
+  cta: string;
+  image: LiveImage;
+}
+
 export interface Props {
   /**
    * @title Title
@@ -14,5 +22,5 @@ export interface Props {
    * @title Cards
    * @description The configuration of the cards of this section
    */
-  cards?: string;
+  cards: Card[];
 }

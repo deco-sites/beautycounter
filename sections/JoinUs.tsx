@@ -1,2 +1,3 @@
 export { default } from "$store/components/joinus/JoinUs.tsx";
-export type { Props } from "$store/components/joinus/interfaces.ts";
+export type { Image as LiveImage } from "$live/std/ui/types/Image.ts";
+export type { Card, Props } from "$store/components/joinus/interfaces.ts";
