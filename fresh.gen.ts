@@ -12,26 +12,28 @@ import * as $3 from "./routes/api/[...catchall].tsx";
 import * as $4 from "./routes/index.tsx";
 import * as $5 from "./routes/inspect-vscode.ts";
 import * as $$0 from "./islands/AddToCartButton.tsx";
-import * as $$1 from "./islands/HeaderButton.tsx";
-import * as $$2 from "./islands/HeaderModals.tsx";
-import * as $$3 from "./islands/LiveControls.tsx";
-import * as $$4 from "./islands/SearchControls.tsx";
-import * as $$5 from "./islands/Slick.tsx";
+import * as $$1 from "./islands/Alert.tsx";
+import * as $$2 from "./islands/HeaderButton.tsx";
+import * as $$3 from "./islands/HeaderModals.tsx";
+import * as $$4 from "./islands/LiveControls.tsx";
+import * as $$5 from "./islands/SearchControls.tsx";
+import * as $$6 from "./islands/Slick.tsx";
 import * as $$$0 from "./sections/Carousel.tsx";
 import * as $$$1 from "./sections/DesignSystem.story.tsx";
 import * as $$$2 from "./sections/Features.tsx";
 import * as $$$3 from "./sections/Footer.tsx";
-import * as $$$4 from "./sections/Header.tsx";
-import * as $$$5 from "./sections/Highlights.tsx";
-import * as $$$6 from "./sections/ProductDetails.tsx";
-import * as $$$7 from "./sections/ProductGallery.tsx";
-import * as $$$8 from "./sections/ProductShelf.tsx";
-import * as $$$9 from "./sections/SearchControls.tsx";
-import * as $$$10 from "./sections/Seo.tsx";
-import * as $$$11 from "./sections/SeoPDP.tsx";
-import * as $$$12 from "./sections/SeoPLP.tsx";
-import * as $$$13 from "./sections/vtexconfig.global.tsx";
-import * as $$$14 from "$live/sections/Head.tsx";
+import * as $$$4 from "./sections/Head.tsx";
+import * as $$$5 from "./sections/Header.tsx";
+import * as $$$6 from "./sections/Highlights.tsx";
+import * as $$$7 from "./sections/ProductDetails.tsx";
+import * as $$$8 from "./sections/ProductGallery.tsx";
+import * as $$$9 from "./sections/ProductShelf.tsx";
+import * as $$$10 from "./sections/SearchControls.tsx";
+import * as $$$11 from "./sections/Seo.tsx";
+import * as $$$12 from "./sections/SeoPDP.tsx";
+import * as $$$13 from "./sections/SeoPLP.tsx";
+import * as $$$14 from "./sections/vtexconfig.global.tsx";
+import * as $$$15 from "$live/sections/Head.tsx";
 import * as $$$$0 from "./functions/occProductDetailsPage.ts";
 import * as $$$$1 from "./functions/shopifyProductDetailsPage.ts";
 import * as $$$$2 from "./functions/shopifyProductList.ts";
@@ -60,28 +62,30 @@ const manifest: DecoManifest = {
   },
   islands: {
     "./islands/AddToCartButton.tsx": $$0,
-    "./islands/HeaderButton.tsx": $$1,
-    "./islands/HeaderModals.tsx": $$2,
-    "./islands/LiveControls.tsx": $$3,
-    "./islands/SearchControls.tsx": $$4,
-    "./islands/Slick.tsx": $$5,
+    "./islands/Alert.tsx": $$1,
+    "./islands/HeaderButton.tsx": $$2,
+    "./islands/HeaderModals.tsx": $$3,
+    "./islands/LiveControls.tsx": $$4,
+    "./islands/SearchControls.tsx": $$5,
+    "./islands/Slick.tsx": $$6,
   },
   sections: {
     "./sections/Carousel.tsx": $$$0,
     "./sections/DesignSystem.story.tsx": $$$1,
     "./sections/Features.tsx": $$$2,
     "./sections/Footer.tsx": $$$3,
-    "./sections/Header.tsx": $$$4,
-    "./sections/Highlights.tsx": $$$5,
-    "./sections/ProductDetails.tsx": $$$6,
-    "./sections/ProductGallery.tsx": $$$7,
-    "./sections/ProductShelf.tsx": $$$8,
-    "./sections/SearchControls.tsx": $$$9,
-    "./sections/Seo.tsx": $$$10,
-    "./sections/SeoPDP.tsx": $$$11,
-    "./sections/SeoPLP.tsx": $$$12,
-    "./sections/vtexconfig.global.tsx": $$$13,
-    "$live/sections/Head.tsx": $$$14,
+    "./sections/Head.tsx": $$$4,
+    "./sections/Header.tsx": $$$5,
+    "./sections/Highlights.tsx": $$$6,
+    "./sections/ProductDetails.tsx": $$$7,
+    "./sections/ProductGallery.tsx": $$$8,
+    "./sections/ProductShelf.tsx": $$$9,
+    "./sections/SearchControls.tsx": $$$10,
+    "./sections/Seo.tsx": $$$11,
+    "./sections/SeoPDP.tsx": $$$12,
+    "./sections/SeoPLP.tsx": $$$13,
+    "./sections/vtexconfig.global.tsx": $$$14,
+    "$live/sections/Head.tsx": $$$15,
   },
   functions: {
     "./functions/occProductDetailsPage.ts": $$$$0,
@@ -487,6 +491,10 @@ const manifest: DecoManifest = {
       },
       "outputSchema": null,
     },
+    "./sections/Head.tsx": {
+      "inputSchema": null,
+      "outputSchema": null,
+    },
     "./sections/Header.tsx": {
       "inputSchema": {
         "title": " Header",
@@ -495,7 +503,59 @@ const manifest: DecoManifest = {
           "alerts": {
             "type": "array",
             "items": {
-              "type": "string",
+              "title": "EditableAlert",
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "title": "Text",
+                  "description": "The text to display in the alert",
+                },
+                "style": {
+                  "type": "string",
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "const": "dark",
+                    },
+                    {
+                      "type": "string",
+                      "const": "decorative-one",
+                    },
+                    {
+                      "type": "string",
+                      "const": "decorative-two",
+                    },
+                    {
+                      "type": "string",
+                      "const": "decorative-three",
+                    },
+                    {
+                      "type": "string",
+                      "const": "decorative-four",
+                    },
+                    {
+                      "type": "string",
+                      "const": "decorative-five",
+                    },
+                  ],
+                  "title": "Style",
+                  "description": "The style to use for this alert",
+                },
+                "cta": {
+                  "type": [
+                    "string",
+                    "null",
+                  ],
+                  "title": "Action text",
+                  "description":
+                    "The text to display in the alert call to action",
+                },
+              },
+              "required": [
+                "text",
+                "style",
+              ],
             },
             "title": "Alerts",
           },

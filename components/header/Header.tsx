@@ -1,10 +1,11 @@
 import Modals from "$store/islands/HeaderModals.tsx";
-import type { EditableProps as SearchbarProps } from "$store/components/search/Searchbar.tsx";
+import type { EditableAlert } from "./alert/Alert.tsx";
 import type { LoaderReturnType } from "$live/std/types.ts";
 import type { Product } from "$live/std/commerce/types.ts";
+import type { EditableProps as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 
-import Alert from "./Alert.tsx";
 import Navbar from "./Navbar.tsx";
+import Alert from "$store/islands/Alert.tsx";
 import type { NavItem as Item } from "./NavItem.ts";
 
 const item: Item[] = [
@@ -31,9 +32,11 @@ const item: Item[] = [
 ];
 
 export interface Props {
-  alerts: string[];
+  alerts: EditableAlert[];
+
   /** @title Search Bar */
   searchbar?: SearchbarProps;
+
   /**
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
