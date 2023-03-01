@@ -19,14 +19,14 @@ const variants = {
     base: "font-bold border-transparent disabled:dark-interactive-default",
     dark: "bg-dark-interactive-default text-interactive-default",
     light: "text-dark-interactive-default bg-interactive-default",
-    large: "py-3 px-12 text-sm uppercase",
+    large: "py-4 px-12 text-xs uppercase",
     small: "text-xs py-0.5 px-6 uppercase",
   },
   quiet: {
     base: "uppercase font-medium",
     dark: "border-dark-interactive-default text-dark-interactive-default",
     light: "border-interactive-default text-interactive-default",
-    large: "py-3 px-12 font-bold text-sm",
+    large: "py-4 px-12 font-bold text-xs",
     small: "text-xs py-0.5 px-6",
   },
   icon: {
@@ -59,7 +59,7 @@ const Button = forwardRef<HTMLButtonElement, Props>(({
 
   return (
     <Component
-      className={`whitespace-nowrap font-button tracking-widest	inline-flex items-center justify-center gap-2 cursor-pointer transition-colors duration-150 ease-in rounded border-1 focus:outline-none ${styles} ${_class}`}
+      className={`whitespace-nowrap tracking-widest	inline-flex items-center justify-center gap-2 cursor-pointer transition-colors duration-150 ease-in border-1 focus:outline-none ${styles} ${_class}`}
       {...props}
       ref={ref}
     >
