@@ -1,9 +1,10 @@
-import { useState } from "preact/hooks";
+import { useMemo, useState } from "preact/hooks";
 import Text from "$store/components/ui/Text.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import Avatar from "$store/components/ui/Avatar.tsx";
 import Image from "$live/std/ui/components/Image.tsx";
+import { useAddToCart } from "$store/sdk/useAddToCart.ts";
 import type { Product } from "$live/std/commerce/types.ts";
 import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 
@@ -15,14 +16,14 @@ interface Props {
   selectVariations?: string;
 }
 
-function ProductCard(
-  {
+function ProductCard(props: Props) {
+  const {
     product,
     preload,
     action = "Add to bag",
     selectVariations = "Select a size",
-  }: Props,
-) {
+  } = props;
+
   const possibilities = useVariantPossibilities(product);
   const sizePossibility = possibilities["TAMANHO"] ?? possibilities["Tamanho"];
   const options = Object.entries(sizePossibility ?? {});
@@ -32,6 +33,11 @@ function ProductCard(
 
   const [chosenSize, setChosenSize] = useState<string>();
   const [front] = images ?? [];
+
+  const skuId: string | undefined = useMemo(() => {
+    if (options.length > 1) return extractSkuId(chosenSize);
+    return extractSkuId(url);
+  }, [url, chosenSize, extractSkuId]);
 
   return (
     <div
@@ -81,9 +87,8 @@ function ProductCard(
         {renderButton(
           selectVariations,
           action,
-          options,
-          chosenSize,
-          product.url,
+          skuId,
+          seller,
         )}
       </div>
     </div>
@@ -124,10 +129,14 @@ function renderSizes(
 function renderButton(
   selectVariations: string,
   action: string,
-  options: [string, string][],
-  chosenSize?: string,
-  url?: string,
+  skuId?: string,
+  sellerId?: string,
 ) {
+  const { loading, ...addToCartProps } = useAddToCart({
+    skuId: skuId || "",
+    sellerId: sellerId || "",
+  });
+
   const baseClasses = [
     "opacity-100",
     "lg:opacity-0",
@@ -141,13 +150,14 @@ function renderButton(
     "text-[9px]",
     "border-t-1",
     "border-gray-400",
+    "focus:outline-none",
   ].join(" ");
 
-  if (options.length <= 1 || chosenSize !== undefined) {
+  if (skuId !== undefined) {
     return (
-      <a href={url} class={`${baseClasses} text-gray-800`}>
+      <button {...addToCartProps} class={`${baseClasses} text-gray-800`}>
         {action}
-      </a>
+      </button>
     );
   }
 
@@ -160,6 +170,13 @@ function renderButton(
       {selectVariations}
     </button>
   );
+}
+
+function extractSkuId(url?: string) {
+  if (!url) return undefined;
+
+  const parsedUrl = new URL(url);
+  return parsedUrl.searchParams.get("skuId") || undefined;
 }
 
 export default ProductCard;
