@@ -32,14 +32,16 @@ function FeatureHighlights(props: Props) {
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 justify-items-center mt-16">
         {features.map(({ icon: id = "Truck", title, description }) => (
-          <div class="group flex flex-col gap-4 items-center lg:max-w-[230px]">
-            <Icon
-              id={id}
-              width={100}
-              height={100}
-              strokeWidth={0.5}
-              class="text-default group-hover:scale-110 transition-all"
-            />
+          <div class="group flex flex-row md:flex-col gap-4 items-center lg:max-w-[230px]">
+            <div class="w-[100px]">
+              <Icon
+                id={id}
+                width={100}
+                height={100}
+                strokeWidth={0.5}
+                class="text-default group-hover:scale-110 transition-all"
+              />
+            </div>
 
             <div class="flex flex-col gap-2 text-center">
               <Text variant="heading-strong" class="text-2xl">

@@ -36,7 +36,7 @@ function ProductCard(
   return (
     <div
       id={`product-card-${productID}`}
-      class="flex flex-1 flex-col h-full group border-1 hover:border-gray-400 border-transparent flex flex-col"
+      class="flex flex-1 flex-col h-full group border-1 border-gray-400 lg:border-transparent lg:hover:border-gray-400 flex flex-col"
     >
       <div aria-label="product link" class="flex flex-1 flex-col">
         <div class="relative w-full overflow-hidden">
@@ -54,14 +54,11 @@ function ProductCard(
           </a>
         </div>
 
-        <div class="flex flex-col px-3 py-1 mt-auto">
+        <div class="flex flex-1 flex-col px-3 py-1">
           {seller && renderSizes(options, setChosenSize, chosenSize)}
 
-          <a href={url} class="mt-2">
-            <Text
-              class="overflow-hidden overflow-ellipsis whitespace-nowrap"
-              variant="caption-regular"
-            >
+          <a href={url} class="mt-auto">
+            <Text variant="caption-regular">
               {name}
             </Text>
 
@@ -108,7 +105,7 @@ function renderSizes(
   }
 
   return (
-    <ul class="flex justify-center items-center gap-2">
+    <ul class="flex justify-center items-center gap-2 flex-wrap mb-2">
       {options.map(([url, value]) => {
         return (
           <Avatar
@@ -132,8 +129,9 @@ function renderButton(
   url?: string,
 ) {
   const baseClasses = [
-    "opacity-0",
-    "group-hover:opacity-100",
+    "opacity-100",
+    "lg:opacity-0",
+    "lg:group-hover:opacity-100",
     "mt-2",
     "tracking-widest",
     "p-4",
