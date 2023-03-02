@@ -1,7 +1,6 @@
-import ProductCard from "$store/components/product/ProductCard.tsx";
 import Text from "$store/components/ui/Text.tsx";
+import ProductCard from "$store/islands/ProductCard.tsx";
 import Container from "$store/components/ui/Container.tsx";
-import Slider from "$store/components/ui/Slider.tsx";
 import type { LoaderReturnType } from "$live/std/types.ts";
 import type { Product } from "$live/std/commerce/types.ts";
 
@@ -15,25 +14,21 @@ function ProductShelf({
   products,
 }: Props) {
   return (
-    <Container class="flex flex-col items-center gap-10 py-10">
+    <div class="flex flex-col">
       {title && (
         <h2>
           <Text class="uppercase" variant="subheading-strong">{title}</Text>
         </h2>
       )}
-      {products?.map((product, index) => {
-        const ml = index === 0 ? "ml-4" : "";
-        const mr = index === products.length - 1 ? "mr-4" : "";
 
-        return (
-          <div
-            class={`min-w-[220px] max-w-[220px] sm:min-w-[287px] sm:max-w-[287px] ${ml} ${mr}`}
-          >
-            <ProductCard key={index} product={product} />
+      <Container class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
+        {products?.map((product, index) => (
+          <div key={index} class="w-full">
+            <ProductCard product={product} />
           </div>
-        );
-      })}
-    </Container>
+        ))}
+      </Container>
+    </div>
   );
 }
 

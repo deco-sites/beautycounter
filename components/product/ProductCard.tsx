@@ -1,131 +1,167 @@
-import Image from "$live/std/ui/components/Image.tsx";
+import { useState } from "preact/hooks";
 import Text from "$store/components/ui/Text.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
-import Button from "$store/components/ui/Button.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
-import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
+import Avatar from "$store/components/ui/Avatar.tsx";
+import Image from "$live/std/ui/components/Image.tsx";
 import type { Product } from "$live/std/commerce/types.ts";
+import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
+
+interface Props {
+  product: Product;
+  /** Preload card image */
+  preload?: boolean;
+  action?: string;
+  selectVariations?: string;
+}
+
+function ProductCard(
+  {
+    product,
+    preload,
+    action = "Add to bag",
+    selectVariations = "Select a size",
+  }: Props,
+) {
+  const possibilities = useVariantPossibilities(product);
+  const sizePossibility = possibilities["TAMANHO"] ?? possibilities["Tamanho"];
+  const options = Object.entries(sizePossibility ?? {});
+
+  const { url, productID, name, image: images, offers } = product;
+  const { listPrice, price, seller } = useOffer(offers);
+
+  const [chosenSize, setChosenSize] = useState<string>();
+  const [front] = images ?? [];
+
+  return (
+    <div
+      id={`product-card-${productID}`}
+      class="flex flex-1 flex-col h-full group border-1 hover:border-gray-400 border-transparent flex flex-col"
+    >
+      <div aria-label="product link" class="flex flex-1 flex-col">
+        <div class="relative w-full overflow-hidden">
+          <a href={url}>
+            <Image
+              width={200}
+              height={200}
+              src={front.url!}
+              preload={preload}
+              alt={front.alternateName}
+              loading={preload ? "eager" : "lazy"}
+              sizes="(max-width: 640px) 50vw, 20vw"
+              class="w-full hover:scale-110 hover:opacity-60 transition-all"
+            />
+          </a>
+        </div>
+
+        <div class="flex flex-col px-3 py-1 mt-auto">
+          {seller && renderSizes(options, setChosenSize, chosenSize)}
+
+          <a href={url} class="mt-2">
+            <Text
+              class="overflow-hidden overflow-ellipsis whitespace-nowrap"
+              variant="caption-regular"
+            >
+              {name}
+            </Text>
+
+            <div class="flex items-center gap-2">
+              <Text
+                class="line-through"
+                variant="subcaption-regular"
+                tone="subdued"
+              >
+                {formatPrice(listPrice, offers!.priceCurrency!)}
+              </Text>
+
+              <Text variant="caption-strong" tone="default">
+                {formatPrice(price, offers!.priceCurrency!)}
+              </Text>
+            </div>
+          </a>
+        </div>
+
+        {renderButton(
+          selectVariations,
+          action,
+          options,
+          chosenSize,
+          product.url,
+        )}
+      </div>
+    </div>
+  );
+}
 
 /**
  * A simple, inplace sku selector to be displayed once the user hovers the product card
  * It takes the user to the pdp once the user clicks on a given sku. This is interesting to
  * remove JS from the frontend
  */
-function Sizes(product: Product) {
-  const possibilities = useVariantPossibilities(product);
-  const options = Object.entries(
-    possibilities["TAMANHO"] ?? possibilities["Tamanho"] ?? {},
-  );
+function renderSizes(
+  options: [string, string][],
+  setChosenSize: (i: string) => void,
+  chosenSize?: string,
+) {
+  if (options.length <= 1) {
+    return null;
+  }
 
   return (
     <ul class="flex justify-center items-center gap-2">
-      {options.map(([url, value]) => (
-        <a href={url}>
+      {options.map(([url, value]) => {
+        return (
           <Avatar
+            content={value}
             class="bg-default"
             variant="abbreviation"
-            content={value}
-            disabled={url === product.url}
+            active={url === chosenSize}
+            onClick={() => setChosenSize(url)}
           />
-        </a>
-      ))}
+        );
+      })}
     </ul>
   );
 }
 
-interface Props {
-  product: Product;
-  /** Preload card image */
-  preload?: boolean;
-}
+function renderButton(
+  selectVariations: string,
+  action: string,
+  options: [string, string][],
+  chosenSize?: string,
+  url?: string,
+) {
+  console.log("here", chosenSize);
+  const baseClasses = [
+    "opacity-0",
+    "group-hover:opacity-100",
+    "mt-2",
+    "tracking-widest",
+    "p-4",
+    "w-full",
+    "text-center",
+    "uppercase",
+    "text-[9px]",
+    "border-t-1",
+    "border-gray-400",
+  ].join(" ");
 
-function ProductCard({ product, preload }: Props) {
-  const {
-    url,
-    productID,
-    name,
-    image: images,
-    offers,
-  } = product;
-
-  /**
-   * I did not really liked the images from our default base store.
-   * To overcome this issue without generating another catalog altogheter
-   * I decided to get images from unplash. However, you should get the images
-   * front the catalog itself. To do this, just uncomment the code below
-   */
-  // const [front, back] = images ?? [];
-  const [front, back] = [{
-    url: `https://source.unsplash.com/user/nikutm?v=${productID}`,
-    alternateName: "nikutm-front",
-  }, {
-    url: `https://source.unsplash.com/user/nikutm?v=${productID}-2`,
-    alternateName: "nikutm-back",
-  }];
-  const { listPrice, price, seller } = useOffer(offers);
+  if (options.length <= 1 || chosenSize !== undefined) {
+    return (
+      <a href={url} class={`${baseClasses} text-gray-800`}>
+        {action}
+      </a>
+    );
+  }
 
   return (
-    <div
-      id={`product-card-${productID}`}
-      class="w-full group"
+    <button
+      disabled
+      type="button"
+      class={`${baseClasses} cursor-not-allowed text-gray-400`}
     >
-      <a href={url} aria-label="product link">
-        <div class="relative w-full">
-          <Image
-            src={front.url!}
-            alt={front.alternateName}
-            width={200}
-            height={279}
-            class="w-full group-hover:hidden"
-            preload={preload}
-            loading={preload ? "eager" : "lazy"}
-            sizes="(max-width: 640px) 50vw, 20vw"
-          />
-          <Image
-            src={back?.url ?? front.url!}
-            alt={back?.alternateName ?? front.alternateName}
-            width={200}
-            height={279}
-            class="w-full hidden group-hover:block"
-            sizes="(max-width: 640px) 50vw, 20vw"
-          />
-          {seller && (
-            <div
-              class="absolute bottom-0 hidden sm:group-hover:flex flex-col gap-2 w-full p-2 bg-opacity-10"
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.2)",
-                backdropFilter: "blur(2px)",
-              }}
-            >
-              <Sizes {...product} />
-              <Button as="a" href={product.url}>Visualizar Produto</Button>
-            </div>
-          )}
-        </div>
-
-        <div class="flex flex-col gap-1 py-2">
-          <Text
-            class="overflow-hidden overflow-ellipsis whitespace-nowrap"
-            variant="caption-regular"
-          >
-            {name}
-          </Text>
-          <div class="flex items-center gap-2">
-            <Text
-              class="line-through"
-              variant="subcaption-regular"
-              tone="subdued"
-            >
-              {formatPrice(listPrice, offers!.priceCurrency!)}
-            </Text>
-            <Text variant="caption-strong" tone="critical">
-              {formatPrice(price, offers!.priceCurrency!)}
-            </Text>
-          </div>
-        </div>
-      </a>
-    </div>
+      {selectVariations}
+    </button>
   );
 }
 
