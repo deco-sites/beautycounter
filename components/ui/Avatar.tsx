@@ -36,26 +36,37 @@ const colors = {
 
 type Props =
   & JSX.IntrinsicElements["button"]
-  & (Abbreviation | Color | Idempotent);
+  & (Abbreviation | Color | Idempotent)
+  & { active?: boolean };
 
-function Avatar({ variant, content, class: _class = "", ...btnProps }: Props) {
+function Avatar(props: Props) {
+  const { variant, content, active, class: _class = "", ...btnProps } = props;
+
   if (variant === "color") {
+    const borderColor = active ? "border-gray-600" : "border-transparent";
+
     return (
-      <button
-        {...btnProps}
-        class={`rounded-full border-1 border-default w-8 h-8 ${_class}`}
-        style={{ backgroundColor: colors[content] ?? "#FFF" }}
-      />
+      <div
+        class={`border-2 hover:border-default ${borderColor} rounded-full w-6 h-6 flex items-center justify-center`}
+      >
+        <button
+          {...btnProps}
+          class={`rounded-full w-4 h-4 ${_class}`}
+          style={{ backgroundColor: colors[content] ?? "#FFF" }}
+        />
+      </div>
     );
   }
 
   if (variant === "abbreviation") {
+    const borderColor = active ? "border-gray-600" : "border-default";
+
     return (
       <button
         {...btnProps}
-        class={`text-caption-regular font-caption-regular rounded-full border-1 border-default w-8 h-8 flex justify-center items-center disabled:bg-interactive-default disabled:text-interactive-default ${_class}`}
+        class={`text-gray-500 focus:outline-none text-xs rounded-full border-1 ${borderColor} hover:border-black w-6 h-6 flex justify-center items-center disabled:bg-interactive-default disabled:text-interactive-default ${_class}`}
       >
-        {content.substring(0, 2)}
+        <span class="absolute">{content.substring(0, 2)}</span>
       </button>
     );
   }
