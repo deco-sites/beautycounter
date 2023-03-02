@@ -92,8 +92,8 @@ const options: Omit<Options, "selfURL"> = {
       fontSize: {
         "body-regular": ["15px", "20px"],
         "body-strong": ["15px", "20px"],
-        "heading-strong": ["20px", "24px"],
-        "heading-regular": ["20px", "24px"],
+        "heading-strong": ["22px", "26px"],
+        "heading-regular": ["22px", "26px"],
         "subheading-strong": ["13px", "16px"],
         "display-strong": ["24px", "28px"],
         "caption-regular": ["13px", "20px"],

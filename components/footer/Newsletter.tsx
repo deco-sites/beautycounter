@@ -1,29 +1,33 @@
 import Text from "$store/components/ui/Text.tsx";
+import Icon from "$store/components/ui/Icon.tsx";
+import { NewsletterProps } from "./interfaces.ts";
+import Button from "$store/components/ui/Button.tsx";
 
-function Newsletter() {
+function Newsletter(props: NewsletterProps) {
+  const { title, description } = props;
+
   return (
-    <div class="flex flex-col sm:flex-row items-center gap-6 sm:gap-20">
-      <div class="flex flex-col gap-2 max-w-[400px]">
-        <Text variant="display-strong" tone="interactive-default">
-          Cadastre-se
-        </Text>
-        <Text variant="caption-regular" tone="interactive-default">
-          Fique por dentro das novidades e ganhe 15% de desconto na primeira
-          compra. Para mais informações clique aqui.
-        </Text>
+    <div class="flex flex-col items-center gap-6 max-w-[350px]">
+      <div class="flex flex-col gap-2">
+        <Text variant="heading-regular">{title}</Text>
+        <Text variant="caption-regular">{description}</Text>
       </div>
-      <form class="flex flex-row items-center gap-2 font-body-strong text-body-strong w-full sm:w-[408px]">
+
+      <div class="flex flex-row items-center font-body-strong text-body-strong w-full">
         <input
-          class="py-2 px-3 flex-grow bg-decorative-one rounded text-interactive-default border-1 border-default"
-          placeholder="Seu e-mail"
+          class="h-[52px] flex-grow border-1 border-dark-interactive-default px-2"
+          placeholder="Enter your e-mail"
         />
-        <button
-          class="py-2 px-3 bg-dark-interactive-default rounded"
-          type="bgutton" // prevent form's default behavior
-        >
-          Cadastrar
-        </button>
-      </form>
+
+        <Button size="small" class="w-[62px] h-[52px]">
+          <Icon
+            width={24}
+            height={24}
+            strokeWidth={2}
+            id={"ChevronRight"}
+          />
+        </Button>
+      </div>
     </div>
   );
 }

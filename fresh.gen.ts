@@ -398,6 +398,28 @@ const manifest: DecoManifest = {
         "title": " Footer",
         "type": "object",
         "properties": {
+          "newsletter": {
+            "title": "Newsletter",
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string",
+                "title": "Title",
+              },
+              "description": {
+                "type": "string",
+                "title": "Description",
+              },
+            },
+            "required": [
+              "title",
+              "description",
+            ],
+          },
+          "finalText": {
+            "type": "string",
+            "title": "Final Text",
+          },
           "sections": {
             "type": "array",
             "items": {
@@ -580,7 +602,11 @@ const manifest: DecoManifest = {
             "title": "Sections",
           },
         },
-        "required": [],
+        "required": [
+          "newsletter",
+          "finalText",
+          "sections",
+        ],
       },
       "outputSchema": null,
     },
