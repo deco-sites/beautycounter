@@ -131,7 +131,6 @@ function renderButton(
   chosenSize?: string,
   url?: string,
 ) {
-  console.log("here", chosenSize);
   const baseClasses = [
     "opacity-0",
     "group-hover:opacity-100",

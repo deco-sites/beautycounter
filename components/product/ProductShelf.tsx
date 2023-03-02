@@ -6,22 +6,23 @@ import type { Product } from "$live/std/commerce/types.ts";
 
 export interface Props {
   title: string;
+  description: string;
   products: LoaderReturnType<Product[]>;
 }
 
 function ProductShelf({
   title,
+  description,
   products,
 }: Props) {
   return (
-    <div class="flex flex-col">
-      {title && (
-        <h2>
-          <Text class="uppercase" variant="subheading-strong">{title}</Text>
-        </h2>
-      )}
+    <div class="flex flex-col items-center justify-center py-12 px-8 lg:px-0 lg:py-16">
+      <div class="max-w-[700px] flex flex-col items-center justify-center">
+        <h2 class="font-title text-7xl uppercase mb-2 text-center">{title}</h2>
+        <p class="text-center text-base">{description}</p>
+      </div>
 
-      <Container class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12">
+      <Container class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-12 mt-16">
         {products?.map((product, index) => (
           <div key={index} class="w-full">
             <ProductCard product={product} />

@@ -966,6 +966,10 @@ const manifest: DecoManifest = {
             "type": "string",
             "title": "Title",
           },
+          "description": {
+            "type": "string",
+            "title": "Description",
+          },
           "products": {
             "$id": "9091c349b893f5d60af9017849735ee9f21e2ba0",
             "format": "live-function",
@@ -975,6 +979,7 @@ const manifest: DecoManifest = {
         },
         "required": [
           "title",
+          "description",
           "products",
         ],
       },
