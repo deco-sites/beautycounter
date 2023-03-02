@@ -59,12 +59,14 @@ function Avatar(props: Props) {
   }
 
   if (variant === "abbreviation") {
-    const borderColor = active ? "border-gray-600" : "border-default";
+    const activeClasses = active
+      ? "bg-primary-dark text-white border-primary-dark"
+      : "border-default text-gray-500";
 
     return (
       <button
         {...btnProps}
-        class={`text-gray-500 focus:outline-none text-xs rounded-full border-1 ${borderColor} hover:border-black w-6 h-6 flex justify-center items-center disabled:bg-interactive-default disabled:text-interactive-default ${_class}`}
+        class={`focus:outline-none text-xs rounded-full border-1 ${activeClasses} hover:border-black w-6 h-6 flex justify-center items-center disabled:bg-interactive-default disabled:text-interactive-default ${_class}`}
       >
         <span class="absolute">{content.substring(0, 2)}</span>
       </button>
