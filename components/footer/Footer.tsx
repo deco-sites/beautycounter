@@ -18,7 +18,7 @@ function Footer(props: Props) {
 
         <FooterContainer class="border-y-1 lg:border-x-1 lg:border-y-0 order-3 lg:order-2">
           <ul class="flex flex-col sm:flex-row gap-20">
-            {sections.map(FooterSection)}
+            {sections?.map(FooterSection)}
           </ul>
         </FooterContainer>
 
