@@ -14,7 +14,7 @@ function SearchControls() {
   return (
     <Container class="flex justify-between border-b-1 border-gray-50 flex-col lg:flex-row mb-4 pb-2 gap-2">
       <div class="flex flex-row items-center">
-        You searched for "{query}"
+        {query ? `You searched for "${query}"` : null}
       </div>
 
       <div class="flex flex-row items-center justify-between">
