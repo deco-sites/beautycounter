@@ -3,7 +3,7 @@ import HeaderButton from "$store/islands/HeaderButton.tsx";
 
 function NavbarCollapsed() {
   return (
-    <div class="flex flex-row justify-between items-center h-[53px] border-b-1 border-default w-full px-4 gap-4">
+    <div class="bg-default flex flex-row justify-between items-center h-[53px] border-b-1 border-default w-full px-4 gap-4">
       <div class="flex gap-6">
         <HeaderButton variant="menu" />
         <div />

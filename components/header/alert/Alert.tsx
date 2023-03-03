@@ -66,7 +66,7 @@ function Alert({ alerts = messages }: Props) {
   };
 
   // prepare slider css classes
-  const sliderFixedClasses = "flex justify-center";
+  const sliderFixedClasses = "flex justify-center relative z-20";
   const sliderBackground = getAlertBackground(alerts[currentIndex].style);
   const sliderClasses = `${sliderBackground} ${sliderFixedClasses}`;
 
