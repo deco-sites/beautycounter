@@ -1,7 +1,6 @@
 import { useSignal } from "@preact/signals";
 import { useCallback } from "preact/hooks";
 import { useCart } from "$store/sdk/cart/useCart.ts";
-import { useUI } from "$store/sdk/useUI.ts";
 
 interface Options {
   skuId: string;
@@ -10,7 +9,6 @@ interface Options {
 
 export const useAddToCart = ({ skuId, sellerId }: Options) => {
   const isAddingToCart = useSignal(false);
-  const { displayCart } = useUI();
   const { addItems, loading } = useCart();
 
   const onClick = useCallback(async (e: MouseEvent) => {
@@ -26,8 +24,6 @@ export const useAddToCart = ({ skuId, sellerId }: Options) => {
       await addItems({
         orderItems: [{ id: skuId, seller: sellerId, quantity: 1 }],
       });
-
-      displayCart.value = true;
     } finally {
       isAddingToCart.value = false;
     }

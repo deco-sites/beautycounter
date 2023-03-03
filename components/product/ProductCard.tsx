@@ -129,13 +129,17 @@ function renderSizes(
 function renderButton(
   selectVariations: string,
   action: string,
-  skuId?: string,
-  sellerId?: string,
+  skuId = "",
+  sellerId = "",
 ) {
-  const { loading, ...addToCartProps } = useAddToCart({
-    skuId: skuId || "",
-    sellerId: sellerId || "",
-  });
+  const { onClick } = useAddToCart({ skuId, sellerId });
+  const [isAdded, setIsAdded] = useState(false);
+
+  const onClickProxy = (e: MouseEvent) => {
+    onClick(e);
+    setIsAdded(true);
+    setInterval(() => setIsAdded(false), 2000);
+  };
 
   const baseClasses = [
     "opacity-100",
@@ -153,9 +157,17 @@ function renderButton(
     "focus:outline-none",
   ].join(" ");
 
+  if (isAdded) {
+    return (
+      <div class={`${baseClasses} text-green-600`}>
+        Added to bag
+      </div>
+    );
+  }
+
   if (skuId !== undefined) {
     return (
-      <button {...addToCartProps} class={`${baseClasses} text-gray-800`}>
+      <button onClick={onClickProxy} class={`${baseClasses} text-gray-800`}>
         {action}
       </button>
     );
