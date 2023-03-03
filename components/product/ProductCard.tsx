@@ -46,8 +46,11 @@ function ProductCard(props: Props) {
       id={`product-card-${productID}`}
       class="flex flex-1 flex-col h-full group border-1 border-gray-400 lg:border-transparent lg:hover:border-gray-400 flex flex-col"
     >
-      <div aria-label="product link" class="flex flex-1 flex-col">
-        <div class="relative w-full overflow-hidden">
+      <div
+        aria-label="product link"
+        class="flex flex-1 flex-col group-hover:bg-default"
+      >
+        <div class="relative bg-default w-full overflow-hidden">
           <a href={url}>
             <Image
               width={200}
@@ -62,7 +65,7 @@ function ProductCard(props: Props) {
           </a>
         </div>
 
-        <div class="flex flex-1 flex-col px-3 py-1">
+        <div class="flex bg-default flex-1 flex-col px-3 pb-3 pt-1">
           {seller && renderSizes(options, setChosenSize, chosenSize)}
 
           <a href={url} class="mt-auto">
@@ -199,7 +202,6 @@ function renderButton(
     "opacity-100",
     "lg:opacity-0",
     "lg:group-hover:opacity-100",
-    "mt-2",
     "w-full",
     "border-t-1",
     "border-gray-400",

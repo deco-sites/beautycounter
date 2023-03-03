@@ -7,6 +7,8 @@ import type { Product } from "$live/std/commerce/types.ts";
 export interface Props {
   title: string;
   description: string;
+  /** @description hex background color */
+  background?: string;
   products: LoaderReturnType<Product[]>;
 }
 
@@ -14,9 +16,12 @@ function ProductShelf({
   title,
   description,
   products,
+  background = "bg-default",
 }: Props) {
   return (
-    <div class="flex flex-col items-center justify-center py-12 px-8 lg:px-0 lg:py-16">
+    <div
+      class={`flex flex-col items-center justify-center py-12 px-8 lg:px-0 lg:py-16 bg-[${background}]`}
+    >
       <div class="max-w-[700px] flex flex-col items-center justify-center">
         <h2 class="font-title text-7xl uppercase mb-2 text-center">{title}</h2>
         <p class="text-center text-base">{description}</p>
