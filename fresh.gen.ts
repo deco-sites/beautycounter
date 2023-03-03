@@ -17,8 +17,9 @@ import * as $$2 from "./islands/HeaderHelper.tsx";
 import * as $$3 from "./islands/HeaderModals.tsx";
 import * as $$4 from "./islands/LiveControls.tsx";
 import * as $$5 from "./islands/ProductCard.tsx";
-import * as $$6 from "./islands/SearchControls.tsx";
-import * as $$7 from "./islands/Slick.tsx";
+import * as $$6 from "./islands/ProductGallery.tsx";
+import * as $$7 from "./islands/SearchControls.tsx";
+import * as $$8 from "./islands/Slick.tsx";
 import * as $$$0 from "./sections/Advocate.tsx";
 import * as $$$1 from "./sections/Carousel.tsx";
 import * as $$$2 from "./sections/DesignSystem.story.tsx";
@@ -31,12 +32,11 @@ import * as $$$8 from "./sections/JoinUs.tsx";
 import * as $$$9 from "./sections/ProductDetails.tsx";
 import * as $$$10 from "./sections/ProductGallery.tsx";
 import * as $$$11 from "./sections/ProductShelf.tsx";
-import * as $$$12 from "./sections/SearchControls.tsx";
-import * as $$$13 from "./sections/Seo.tsx";
-import * as $$$14 from "./sections/SeoPDP.tsx";
-import * as $$$15 from "./sections/SeoPLP.tsx";
-import * as $$$16 from "./sections/vtexconfig.global.tsx";
-import * as $$$17 from "$live/sections/Head.tsx";
+import * as $$$12 from "./sections/Seo.tsx";
+import * as $$$13 from "./sections/SeoPDP.tsx";
+import * as $$$14 from "./sections/SeoPLP.tsx";
+import * as $$$15 from "./sections/vtexconfig.global.tsx";
+import * as $$$16 from "$live/sections/Head.tsx";
 import * as $$$$0 from "./functions/occProductDetailsPage.ts";
 import * as $$$$1 from "./functions/shopifyProductDetailsPage.ts";
 import * as $$$$2 from "./functions/shopifyProductList.ts";
@@ -70,8 +70,9 @@ const manifest: DecoManifest = {
     "./islands/HeaderModals.tsx": $$3,
     "./islands/LiveControls.tsx": $$4,
     "./islands/ProductCard.tsx": $$5,
-    "./islands/SearchControls.tsx": $$6,
-    "./islands/Slick.tsx": $$7,
+    "./islands/ProductGallery.tsx": $$6,
+    "./islands/SearchControls.tsx": $$7,
+    "./islands/Slick.tsx": $$8,
   },
   sections: {
     "./sections/Advocate.tsx": $$$0,
@@ -86,12 +87,11 @@ const manifest: DecoManifest = {
     "./sections/ProductDetails.tsx": $$$9,
     "./sections/ProductGallery.tsx": $$$10,
     "./sections/ProductShelf.tsx": $$$11,
-    "./sections/SearchControls.tsx": $$$12,
-    "./sections/Seo.tsx": $$$13,
-    "./sections/SeoPDP.tsx": $$$14,
-    "./sections/SeoPLP.tsx": $$$15,
-    "./sections/vtexconfig.global.tsx": $$$16,
-    "$live/sections/Head.tsx": $$$17,
+    "./sections/Seo.tsx": $$$12,
+    "./sections/SeoPDP.tsx": $$$13,
+    "./sections/SeoPLP.tsx": $$$14,
+    "./sections/vtexconfig.global.tsx": $$$15,
+    "$live/sections/Head.tsx": $$$16,
   },
   functions: {
     "./functions/occProductDetailsPage.ts": $$$$0,
@@ -981,24 +981,6 @@ const manifest: DecoManifest = {
           "title",
           "description",
           "products",
-        ],
-      },
-      "outputSchema": null,
-    },
-    "./sections/SearchControls.tsx": {
-      "inputSchema": {
-        "title": " Search Controls",
-        "type": "object",
-        "properties": {
-          "page": {
-            "$id": "4246b2b7d22c6a301356a5b3c9c5d48523654a0f",
-            "format": "live-function",
-            "type": "string",
-            "title": "Page",
-          },
-        },
-        "required": [
-          "page",
         ],
       },
       "outputSchema": null,

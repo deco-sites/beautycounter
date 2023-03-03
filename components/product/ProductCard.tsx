@@ -10,9 +10,10 @@ import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 
 interface Props {
   product: Product;
-  /** Preload card image */
-  preload?: boolean;
+
   action?: string;
+  preload?: boolean;
+  preview?: () => void;
   selectVariations?: string;
 }
 
@@ -22,6 +23,7 @@ function ProductCard(props: Props) {
     preload,
     action = "Add to bag",
     selectVariations = "Select a size",
+    preview,
   } = props;
 
   const possibilities = useVariantPossibilities(product);
@@ -90,6 +92,8 @@ function ProductCard(props: Props) {
           skuId,
           seller,
         )}
+
+        <p onClick={preview}>PREVIEW</p>
       </div>
     </div>
   );
