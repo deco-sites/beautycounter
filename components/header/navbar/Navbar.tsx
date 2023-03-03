@@ -1,5 +1,5 @@
-import NavbarMobile from "./Navbar.mobile.tsx";
-import NavbarDesktop from "./Navbar.desktop.tsx";
+import NavbarExpanded from "./NavbarExpanded.tsx";
+import NavbarCollapsed from "./NavbarCollapsed.tsx";
 import type { NavItem as Item } from "./interfaces.ts";
 
 const item: Item[] = [
@@ -11,8 +11,13 @@ const item: Item[] = [
 function Navbar({ items = item }: { items: Item[] }) {
   return (
     <>
-      <NavbarMobile />
-      <NavbarDesktop items={items} />
+      <div class="lg:hidden block">
+        <NavbarCollapsed />
+      </div>
+
+      <div class="hidden lg:block">
+        <NavbarExpanded items={items} />
+      </div>
     </>
   );
 }

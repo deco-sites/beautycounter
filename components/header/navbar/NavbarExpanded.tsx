@@ -3,9 +3,9 @@ import Icon from "$store/components/ui/Icon.tsx";
 import type { NavItem as Item } from "./interfaces.ts";
 import HeaderButton from "$store/islands/HeaderButton.tsx";
 
-function NavbarDesktop({ items }: { items: Item[] }) {
+function NavbarExpanded({ items }: { items: Item[] }) {
   return (
-    <div class="hidden lg:flex flex-col">
+    <div class="flex flex-col">
       <div class="flex flex-row justify-between items-center w-full py-4 px-12">
         <div class="flex flex-1" />
 
@@ -31,4 +31,4 @@ function NavbarDesktop({ items }: { items: Item[] }) {
   );
 }
 
-export default NavbarDesktop;
+export default NavbarExpanded;

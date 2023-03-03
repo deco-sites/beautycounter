@@ -5,7 +5,7 @@ import type { Product } from "$live/std/commerce/types.ts";
 import type { EditableProps as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 
 import Navbar from "./navbar/Navbar.tsx";
-import Alert from "$store/islands/Alert.tsx";
+import HeaderHelper from "$store/islands/HeaderHelper.tsx";
 import type { NavItem as Item } from "./navbar/interfaces.ts";
 
 export interface Props {
@@ -32,9 +32,10 @@ export interface Props {
 
 function Header({ alerts, searchbar, products, navItems }: Props) {
   return (
-    <header class="lg:h-[167px] h-[93px]">
-      <div class="bg-default fixed w-full z-50">
-        <Alert alerts={alerts} />
+    <header class="lg:h-[127px] h-[53px]">
+      <HeaderHelper alerts={alerts} />
+
+      <div class="mt-[40px] relative z-20">
         <Navbar items={navItems} />
       </div>
 

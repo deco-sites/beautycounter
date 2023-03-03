@@ -1,9 +1,9 @@
 import Icon from "$store/components/ui/Icon.tsx";
 import HeaderButton from "$store/islands/HeaderButton.tsx";
 
-function NavbarMobile() {
+function NavbarCollapsed() {
   return (
-    <div class="lg:hidden flex flex-row justify-between items-center h-[53px] border-b-1 border-default w-full px-4 gap-4">
+    <div class="flex flex-row justify-between items-center h-[53px] border-b-1 border-default w-full px-4 gap-4">
       <div class="flex gap-6">
         <HeaderButton variant="menu" />
         <div />
@@ -21,4 +21,4 @@ function NavbarMobile() {
   );
 }
 
-export default NavbarMobile;
+export default NavbarCollapsed;

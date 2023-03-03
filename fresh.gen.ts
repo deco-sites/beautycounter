@@ -12,8 +12,8 @@ import * as $3 from "./routes/api/[...catchall].tsx";
 import * as $4 from "./routes/index.tsx";
 import * as $5 from "./routes/inspect-vscode.ts";
 import * as $$0 from "./islands/AddToCartButton.tsx";
-import * as $$1 from "./islands/Alert.tsx";
-import * as $$2 from "./islands/HeaderButton.tsx";
+import * as $$1 from "./islands/HeaderButton.tsx";
+import * as $$2 from "./islands/HeaderHelper.tsx";
 import * as $$3 from "./islands/HeaderModals.tsx";
 import * as $$4 from "./islands/LiveControls.tsx";
 import * as $$5 from "./islands/ProductCard.tsx";
@@ -65,8 +65,8 @@ const manifest: DecoManifest = {
   },
   islands: {
     "./islands/AddToCartButton.tsx": $$0,
-    "./islands/Alert.tsx": $$1,
-    "./islands/HeaderButton.tsx": $$2,
+    "./islands/HeaderButton.tsx": $$1,
+    "./islands/HeaderHelper.tsx": $$2,
     "./islands/HeaderModals.tsx": $$3,
     "./islands/LiveControls.tsx": $$4,
     "./islands/ProductCard.tsx": $$5,
