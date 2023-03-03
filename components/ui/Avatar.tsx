@@ -1,4 +1,3 @@
-import Text from "$store/components/ui/Text.tsx";
 import type { JSX } from "preact";
 
 /**

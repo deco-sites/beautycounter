@@ -5,7 +5,7 @@ import { useUI } from "$store/sdk/useUI.ts";
 
 interface Options {
   skuId: string;
-  sellerId: string;
+  sellerId?: string;
 }
 
 export const useAddToCart = ({ skuId, sellerId }: Options) => {
@@ -16,6 +16,10 @@ export const useAddToCart = ({ skuId, sellerId }: Options) => {
   const onClick = useCallback(async (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+
+    if (!sellerId) {
+      return;
+    }
 
     try {
       isAddingToCart.value = true;
