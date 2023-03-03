@@ -1,9 +1,10 @@
-import Icon from "$store/components/ui/Icon.tsx";
+import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Text from "$store/components/ui/Text.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import Button from "$store/components/ui/Button.tsx";
 import Image from "$live/std/ui/components/Image.tsx";
+import Slider from "$store/components/ui/Slider.tsx";
 import Container from "$store/components/ui/Container.tsx";
 import type { LoaderReturnType } from "$live/std/types.ts";
 import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
@@ -49,14 +50,27 @@ function ProductDetails({ page }: Props) {
     },
   ];
 
+  const renderArrow = (id: AvailableIcons) => {
+    return (
+      <span class={"text-default"}>
+        <Icon
+          id={id}
+          width={24}
+          height={24}
+          strokeWidth={2}
+        />
+      </span>
+    );
+  };
+
   return (
     <div class="border-t-1 border-default">
-      <Container class="py-0 sm:py-10 ">
+      <Container class="py-6 px-4 lg:py-10 lg:px-10">
         <Breadcrumb breadcrumbList={breadcrumbList} />
 
-        <div class="flex flex-col gap-4 sm:flex-row sm:gap-10 mt-4">
-          {/* Images */}
-          <div class="flex flex-row gap-4 w-[500px]">
+        <div class="flex flex-col gap-4 lg:flex-row lg:gap-10 mt-4">
+          {/* Desktop Images */}
+          <div class="hidden lg:flex flex-row gap-4 max-w-[500px]">
             <div class="flex flex-col gap-4 w-[80px] sticky self-start top-[107px]">
               {images.map((img, index) => (
                 <Image
@@ -92,8 +106,33 @@ function ProductDetails({ page }: Props) {
             </div>
           </div>
 
+          {/* Mobile images */}
+          <div class="block lg:hidden">
+            <Slider
+              animationDuration={9999}
+              class="h-[300px] w-full"
+              leftArrow={renderArrow("ChevronLeft")}
+              rightArrow={renderArrow("ChevronRight")}
+            >
+              {images.map((img, index) => (
+                <Image
+                  width={300}
+                  height={300}
+                  sizes="100vw"
+                  src={img.url!}
+                  alt={img.alternateName}
+                  class="scroll-snap-center w-full"
+                  style={{ aspectRatio: "300 / 300" }}
+                  // Preload LCP image for better web vitals
+                  preload={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              ))}
+            </Slider>
+          </div>
+
           {/* Basic Info */}
-          <div class="px-4 sm:px-0 flex flex-col flex-1 sticky self-start top-[107px]">
+          <div class="sm:px-0 flex flex-col flex-1 sticky self-start top-[107px]">
             {/* Code and name */}
             <div>
               <h1>
@@ -157,7 +196,7 @@ function ProductDetails({ page }: Props) {
             </div>
 
             {/* Add to Cart and Favorites button */}
-            <div class="mt-2 sm:mt-10 flex flex-row gap-2 w-min">
+            <div class="mt-8 sm:mt-10 flex flex-row gap-2 w-full md:w-min">
               <div class="max-w-min">
                 <QuantitySelector quantity={quantity} onChange={setQuantity} />
               </div>
@@ -167,7 +206,7 @@ function ProductDetails({ page }: Props) {
                   sellerId={seller}
                 />
               )}
-              <Button variant="icon">
+              <Button variant="icon" class="hidden md:block">
                 <Icon id="Heart" width={24} height={24} strokeWidth={2} />
               </Button>
             </div>

@@ -14,7 +14,8 @@ function AddToCartButton({ skuId, sellerId }: Props) {
 
   return (
     <Button {...props} class="w-full">
-      Add to bag
+      <span class="hidden md:block">Add to bag</span>
+      <span class="block md:hidden">Add</span>
     </Button>
   );
 }
