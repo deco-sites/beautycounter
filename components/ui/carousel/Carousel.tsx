@@ -6,11 +6,13 @@ import { Picture, Source } from "$live/std/ui/components/Picture.tsx";
 
 const mobileDimension: Dimension = { w: 1125, h: 1068 };
 const desktopDimension: Dimension = { w: 2217, h: 1000 };
-const aspectRatio = ({ w, h }: Dimension) => ((h / w) * 100).toFixed(2);
+const aspectRatio = ({ w, h }: Dimension) => (((h / w) * 100) + 1).toFixed(2);
 
 function Carousel({ images, preload }: Props) {
   const sliderClasses = [
     "w-full",
+    "bg-[#f7f7f7]",
+    "lg:bg-transparent",
     // this padding top (pt) is the aspect-ratio (height/width) value from the image below for each viewport
     `pt-[${aspectRatio(mobileDimension)}%]`,
     `lg:pt-[${aspectRatio(desktopDimension)}%]`,

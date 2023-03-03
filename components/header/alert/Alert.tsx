@@ -33,7 +33,7 @@ function Alert({ alerts = messages }: Props) {
 
     return (
       <Text class="flex justify-center items-center h-full text-xs font-bold">
-        <span class="w-24"></span>
+        <span class="w-28"></span>
 
         <p class={`${textColor} truncate mr-2`}>
           {alert.text}
@@ -45,7 +45,7 @@ function Alert({ alerts = messages }: Props) {
           </Button>
         )}
 
-        <span class="w-24"></span>
+        <span class="w-28"></span>
       </Text>
     );
   };
