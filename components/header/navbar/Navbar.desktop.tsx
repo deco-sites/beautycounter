@@ -17,7 +17,7 @@ function NavbarDesktop({ items }: { items: Item[] }) {
           <HeaderButton variant="search" />
 
           <a href="/login" aria-label="Log in">
-            <Icon id="User" width={20} height={20} strokeWidth={0.4} />
+            <Icon id="User" width={24} height={24} strokeWidth={0.4} />
           </a>
 
           <HeaderButton variant="cart" />
