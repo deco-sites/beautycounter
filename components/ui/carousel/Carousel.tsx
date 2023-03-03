@@ -63,24 +63,26 @@ function Carousel({ images, preload }: Props) {
       <div class="relative">
         <Picture class="w-screen block" preload={lcp}>
           <Source
-            media="(max-width: 1024px)"
-            fetchPriority={lcp ? "high" : "auto"}
             src={mobile}
             width={mobileDimension.w}
             height={mobileDimension.h}
+            media="(max-width: 1024px)"
+            fetchPriority={lcp ? "high" : "auto"}
           />
           <Source
-            media="(min-width: 1024px)"
-            fetchPriority={lcp ? "high" : "auto"}
             src={desktop}
             width={desktopDimension.w}
             height={desktopDimension.h}
+            media="(min-width: 1024px)"
+            fetchPriority={lcp ? "high" : "auto"}
           />
+
           <img
+            alt={alt}
+            src={desktop}
+            sizes="100vw"
             class="object-cover w-full"
             loading={lcp ? "eager" : "lazy"}
-            src={desktop}
-            alt={alt}
           />
         </Picture>
 
