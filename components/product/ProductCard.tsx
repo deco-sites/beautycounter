@@ -91,9 +91,8 @@ function ProductCard(props: Props) {
           action,
           skuId,
           seller,
+          preview,
         )}
-
-        <p onClick={preview}>PREVIEW</p>
       </div>
     </div>
   );
@@ -135,66 +134,89 @@ function renderButton(
   action: string,
   skuId?: string,
   sellerId?: string,
+  preview?: () => void,
 ) {
-  const { onClick } = useAddToCart({
+  const [isAdded, setIsAdded] = useState(false);
+  const componentsToRender = [];
+
+  const { onClick: addToCart } = useAddToCart({
     skuId: skuId || "",
     sellerId: sellerId || "",
   });
 
-  const [isAdded, setIsAdded] = useState(false);
-
-  const onClickProxy = (e: MouseEvent) => {
-    onClick(e);
+  const addToCartProxy = (e: MouseEvent) => {
+    addToCart(e);
     setIsAdded(true);
     setInterval(() => setIsAdded(false), 2000);
   };
 
-  const baseClasses = [
+  const textClasses = [
+    "tracking-widest",
+    "justify-center",
+    "uppercase",
+    "text-[9px]",
+    "flex-1",
+    "flex",
+    "p-4",
+  ].join(" ");
+
+  if (isAdded) {
+    componentsToRender.push(
+      <div class={`${textClasses} text-green-600`}>
+        Added to bag
+      </div>,
+    );
+  } else if (skuId !== undefined) {
+    componentsToRender.push(
+      <button onClick={addToCartProxy} class={`${textClasses} text-gray-800`}>
+        {action}
+      </button>,
+    );
+  } else {
+    componentsToRender.push(
+      <button
+        disabled
+        type="button"
+        class={`${textClasses} cursor-not-allowed text-gray-400`}
+      >
+        {selectVariations}
+      </button>,
+    );
+  }
+
+  if (preview) {
+    componentsToRender.push(
+      <div
+        onClick={preview}
+        class={`${textClasses} hidden lg:block border-l-1 border-gray-400 text-gray-800`}
+      >
+        Quick view
+      </div>,
+    );
+  }
+
+  const containerClasses = [
     "opacity-100",
     "lg:opacity-0",
     "lg:group-hover:opacity-100",
     "mt-2",
-    "tracking-widest",
-    "p-4",
     "w-full",
-    "text-center",
-    "uppercase",
-    "text-[9px]",
     "border-t-1",
     "border-gray-400",
     "focus:outline-none",
+    "flex",
+    "flex-row",
   ].join(" ");
 
-  if (isAdded) {
-    return (
-      <div class={`${baseClasses} text-green-600`}>
-        Added to bag
-      </div>
-    );
-  }
-
-  if (skuId !== undefined) {
-    return (
-      <button onClick={onClickProxy} class={`${baseClasses} text-gray-800`}>
-        {action}
-      </button>
-    );
-  }
-
   return (
-    <button
-      disabled
-      type="button"
-      class={`${baseClasses} cursor-not-allowed text-gray-400`}
-    >
-      {selectVariations}
+    <button type="button" class={containerClasses}>
+      {componentsToRender}
     </button>
   );
 }
 
 function extractSkuId(url?: string) {
   if (!url) return undefined;
-
   const parsedUrl = new URL(url);
   return parsedUrl.searchParams.get("skuId") || undefined;
 }
