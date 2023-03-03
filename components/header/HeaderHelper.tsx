@@ -18,7 +18,11 @@ export default function HeaderHelper(props: Props) {
     setNavbarVisibility(navVisibility);
   }
 
-  const containerAnimationName = useMemo(() => {
+  const containerSize = useMemo(() => {
+    return navbarVisibility ? "h-[93px]" : "h-[40px]";
+  }, [navbarVisibility]);
+
+  const navbarAnimationName = useMemo(() => {
     const fadeIn = tw(keyframes`
       0% { 
         height: 53px;
@@ -58,12 +62,12 @@ export default function HeaderHelper(props: Props) {
   }, []);
 
   return (
-    <div class="fixed w-full z-50 top-0">
+    <div class={`fixed w-full z-50 top-0 ${containerSize}`}>
       <Alert alerts={alerts} />
 
       <div
         class={`h-0 overflow-hidden ${fadeAnimation} relative z-10`}
-        style={`animation-name: ${containerAnimationName};`}
+        style={`animation-name: ${navbarAnimationName};`}
       >
         <Suspense fallback={null}>
           <NavbarCollapsed />
