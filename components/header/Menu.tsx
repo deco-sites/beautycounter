@@ -6,7 +6,7 @@ export interface Props {
 
 function Menu({ items }: Props) {
   return (
-    <ul class="flex-grow flex flex-col gap-2 pt-2">
+    <ul class="flex-grow flex flex-col gap-12 pt-6">
       {items.map((item) => (
         <li>
           <a class="text-black text-base" href={item.href}>{item.label}</a>

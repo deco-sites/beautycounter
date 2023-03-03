@@ -64,7 +64,7 @@ const Modal = ({
       onClick={(e) =>
         (e.target as HTMLDialogElement).tagName === "DIALOG" && onClose?.()}
     >
-      <section class="py-6 px-4 h-full bg-default flex flex-col">
+      <section class="py-6 px-4 min-h-full bg-default flex flex-col">
         <header class="flex justify-between pb-6 border-b-1 border-default">
           <h1>
             <Text variant="heading-strong">{title}</Text>
