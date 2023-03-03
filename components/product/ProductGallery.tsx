@@ -30,6 +30,7 @@ function ProductGallery({ page }: Props) {
   const renderProduct = (product: Product, index: number) => {
     const previewerNumber = Math.trunc(index / DESKTOP_COLS_SIZE);
     const previewAction = () => setProductPreview({ previewerNumber, product });
+    const closePreview = () => setProductPreview(undefined);
     const shouldRenderPreviewRow = index % DESKTOP_COLS_SIZE === 0;
     const componentsToReturn = [];
 
@@ -40,10 +41,13 @@ function ProductGallery({ page }: Props) {
     ) {
       componentsToReturn.push(
         <div
-          class="col-span-4 hidden md:flex lg:flex"
           id={`${PRODUCT_PREVIEWER_ID}-${previewerNumber}`}
+          class="col-span-4 hidden md:flex lg:flex justify-center border-b-1 border-default"
         >
-          <ProductPreviewer product={productPreview.product} />
+          <ProductPreviewer
+            closePreview={closePreview}
+            product={productPreview.product}
+          />
         </div>,
       );
     }
