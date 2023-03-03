@@ -129,10 +129,14 @@ function renderSizes(
 function renderButton(
   selectVariations: string,
   action: string,
-  skuId = "",
-  sellerId = "",
+  skuId?: string,
+  sellerId?: string,
 ) {
-  const { onClick } = useAddToCart({ skuId, sellerId });
+  const { onClick } = useAddToCart({
+    skuId: skuId || "",
+    sellerId: sellerId || "",
+  });
+
   const [isAdded, setIsAdded] = useState(false);
 
   const onClickProxy = (e: MouseEvent) => {
