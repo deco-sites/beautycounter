@@ -10,7 +10,7 @@ function NavbarCollapsed() {
       </div>
 
       <a href="/" aria-label="Store logo">
-        <Icon id="Logo" width="auto" height={28} />
+        <Icon id="Logo" height={28} />
       </a>
 
       <div class="flex gap-6">

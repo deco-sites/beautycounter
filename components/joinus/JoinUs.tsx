@@ -1,5 +1,5 @@
 import { Card, Props } from "./interfaces.ts";
-import { Picture } from "$live/std/ui/components/Picture.tsx";
+import Image from "$live/std/ui/components/Image.tsx";
 
 function JoinUs(props: Props) {
   const { title, content, cards } = props;
@@ -10,14 +10,17 @@ function JoinUs(props: Props) {
 
     return (
       <div class={`cursor-pointer ${mt}`}>
-        <Picture class="w-full block mb-6">
-          <img
-            src={image}
-            alt={title}
-            loading={"lazy"}
-            class="object-cover w-full"
-          />
-        </Picture>
+        <Image
+          src={image}
+          alt={title}
+          width={420}
+          height={420}
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
+          class="object-cover w-full mb-6"
+          sizes="(max-width: 1024px) 80vw, 30vw"
+        />
 
         <p class="uppercase text-2xl font-bold text-center">{title}</p>
         <p class="my-6 text-center">{description}</p>
