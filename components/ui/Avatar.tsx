@@ -59,7 +59,7 @@ function Avatar(props: Props) {
 
   if (variant === "abbreviation") {
     const activeClasses = active
-      ? "bg-primary-dark text-white border-primary-dark"
+      ? "bg-black text-white border-black"
       : "border-default text-gray-500";
 
     return (
