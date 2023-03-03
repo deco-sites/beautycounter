@@ -7,6 +7,9 @@ import Image from "$live/std/ui/components/Image.tsx";
 import { useAddToCart } from "$store/sdk/useAddToCart.ts";
 import type { Product } from "$live/std/commerce/types.ts";
 
+import { tw } from "twind";
+import { animation, css, keyframes } from "twind/css";
+
 interface Props {
   product: Product;
   closePreview: () => void;
@@ -25,8 +28,27 @@ function ProductPreviewer(props: Props) {
     setInterval(() => setIsAdded(false), 2000);
   };
 
+  const fadeAnimation = tw(css(animation({
+    animationDuration: `1s`,
+    animationFillMode: "forwards",
+    animationTimingFunction: "ease",
+  }, {})));
+
+  const fadeIn = tw(keyframes`
+    0% { 
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  `);
+
   return (
-    <div class="flex flex-row max-w-[800px] p-4 pb-8 gap-4">
+    <div
+      class={`flex opacity-0 ${fadeAnimation} flex-row max-w-[800px] pb-8 gap-4`}
+      style={`animation-name: ${fadeIn};`}
+    >
       <a
         href={url}
         class="w-[200px] h-full flex items-center justify-center"

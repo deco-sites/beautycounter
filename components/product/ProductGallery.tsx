@@ -71,7 +71,11 @@ function ProductGallery({ page }: Props) {
     const previewerBounding = previewer.getBoundingClientRect();
     const previewerPosition = previewerBounding.top + window.scrollY;
     const scrollTop = previewerPosition - 120;
-    window.scrollTo({ top: scrollTop, behavior: "smooth" });
+
+    setTimeout(
+      () => window.scrollTo({ top: scrollTop, behavior: "smooth" }),
+      0,
+    );
   }, [productPreview]);
 
   return (
