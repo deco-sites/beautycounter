@@ -4,9 +4,9 @@ import Button from "$store/components/ui/Button.tsx";
 import { Dimension, Image, Props } from "./interfaces.ts";
 import { Picture, Source } from "$live/std/ui/components/Picture.tsx";
 
-const mobileDimension: Dimension = { w: 750, h: 712 };
+const mobileDimension: Dimension = { w: 1125, h: 1068 };
 const desktopDimension: Dimension = { w: 2217, h: 1000 };
-const aspectRatio = ({ w, h }: Dimension) => (((h / w) * 100) + 1).toFixed(2);
+const aspectRatio = ({ w, h }: Dimension) => ((h / w) * 100).toFixed(2);
 
 function Carousel({ images, preload }: Props) {
   const sliderClasses = [
@@ -30,7 +30,7 @@ function Carousel({ images, preload }: Props) {
     const { title, description } = image;
 
     const titleClasses =
-      "w-[350px] uppercase mb-8 lg:mb-16 font-title text-6xl lg:text-8xl whitespace-nowrap";
+      "lg:w-[350px] uppercase mb-8 lg:mb-16 font-title text-6xl lg:text-8xl whitespace-nowrap";
 
     const containerClasses =
       "flex pt-12 absolute top-0 z-10 right-[63%] h-full justify-center items-center";
