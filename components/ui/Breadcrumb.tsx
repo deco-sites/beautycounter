@@ -26,7 +26,7 @@ function Breadcrumb({ breadcrumbList }: Props) {
   const { itemListElement } = breadcrumbList;
 
   return (
-    <ul class="flex flex-row gap-2 items-center max-w-[360px]">
+    <ul class="flex flex-row gap-2 items-center max-w-[360px] lg:max-w-full">
       <Item name="Home" item="/" />
       {itemListElement.map((item) => (
         <>

@@ -17,9 +17,10 @@ import * as $$2 from "./islands/HeaderHelper.tsx";
 import * as $$3 from "./islands/HeaderModals.tsx";
 import * as $$4 from "./islands/LiveControls.tsx";
 import * as $$5 from "./islands/ProductCard.tsx";
-import * as $$6 from "./islands/ProductGallery.tsx";
-import * as $$7 from "./islands/SearchControls.tsx";
-import * as $$8 from "./islands/Slick.tsx";
+import * as $$6 from "./islands/ProductDetails.tsx";
+import * as $$7 from "./islands/ProductGallery.tsx";
+import * as $$8 from "./islands/SearchControls.tsx";
+import * as $$9 from "./islands/Slick.tsx";
 import * as $$$0 from "./sections/Advocate.tsx";
 import * as $$$1 from "./sections/Carousel.tsx";
 import * as $$$2 from "./sections/DesignSystem.story.tsx";
@@ -70,9 +71,10 @@ const manifest: DecoManifest = {
     "./islands/HeaderModals.tsx": $$3,
     "./islands/LiveControls.tsx": $$4,
     "./islands/ProductCard.tsx": $$5,
-    "./islands/ProductGallery.tsx": $$6,
-    "./islands/SearchControls.tsx": $$7,
-    "./islands/Slick.tsx": $$8,
+    "./islands/ProductDetails.tsx": $$6,
+    "./islands/ProductGallery.tsx": $$7,
+    "./islands/SearchControls.tsx": $$8,
+    "./islands/Slick.tsx": $$9,
   },
   sections: {
     "./sections/Advocate.tsx": $$$0,
@@ -969,6 +971,14 @@ const manifest: DecoManifest = {
           "description": {
             "type": "string",
             "title": "Description",
+          },
+          "background": {
+            "type": [
+              "string",
+              "null",
+            ],
+            "title": "Background",
+            "description": "hex background color",
           },
           "products": {
             "$id": "9091c349b893f5d60af9017849735ee9f21e2ba0",
