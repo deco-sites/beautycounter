@@ -25,6 +25,7 @@ const PRODUCT_PREVIEWER_ID = "product-gallery-previewer";
 
 function ProductGallery({ page }: Props) {
   const filters = page?.filters;
+
   const [productPreview, setProductPreview] = useState<Previewer>();
 
   const renderProduct = (product: Product, index: number) => {
