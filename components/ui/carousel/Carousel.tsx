@@ -4,7 +4,7 @@ import Button from "$store/components/ui/Button.tsx";
 import { Dimension, Image, Props } from "./interfaces.ts";
 import { Picture, Source } from "$live/std/ui/components/Picture.tsx";
 
-const mobileDimension: Dimension = { w: 1125, h: 1068 };
+const mobileDimension: Dimension = { w: 750, h: 712 };
 const desktopDimension: Dimension = { w: 2217, h: 1000 };
 const aspectRatio = ({ w, h }: Dimension) => (((h / w) * 100) + 1).toFixed(2);
 
@@ -80,9 +80,9 @@ function Carousel({ images, preload }: Props) {
           <img
             alt={alt}
             src={desktop}
-            sizes="100vw"
             class="object-cover w-full"
             loading={lcp ? "eager" : "lazy"}
+            decoding={lcp ? "sync" : "async"}
           />
         </Picture>
 
