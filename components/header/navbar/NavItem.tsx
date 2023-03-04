@@ -13,7 +13,12 @@ export function NavItem(props: NavItem) {
     return (
       <a href="/" class="w-[275px] h-[225px]">
         <Picture class="w-full block">
-          <img src={image} alt={label} class="object-cover w-full" />
+          <img
+            src={image}
+            alt={label}
+            loading="lazy"
+            class="object-cover w-full"
+          />
         </Picture>
       </a>
     );
