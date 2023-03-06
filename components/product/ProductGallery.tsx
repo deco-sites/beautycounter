@@ -7,7 +7,7 @@ import ProductCard from "$store/islands/ProductCard.tsx";
 import Container from "$store/components/ui/Container.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import type { LoaderReturnType } from "$live/std/types.ts";
-// import Controls from "$store/components/search/Controls.tsx";
+import Controls from "$store/components/search/Controls.tsx";
 import type { Product, ProductListingPage } from "$live/std/commerce/types.ts";
 
 export interface Props {
@@ -86,7 +86,7 @@ function ProductGallery({ page }: Props) {
       </div>
 
       <Container>
-        {/* <Controls /> */}
+        <Controls />
 
         <div
           class={`relative grid grid-cols-2 sm:grid-cols-${DESKTOP_COLS_SIZE} gap-2 sm:gap-10 items-center`}

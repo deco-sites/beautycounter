@@ -8,8 +8,7 @@ export interface Props {
 }
 
 function SearchControls() {
-  const url = location?.href ? new URL(location?.href) : undefined;
-  const query = url ? url.searchParams.get("q") : undefined;
+  const query = getQuery();
 
   return (
     <Container class="flex justify-between border-b-1 border-gray-50 flex-col lg:flex-row mb-4 pb-2 gap-2">
@@ -22,6 +21,17 @@ function SearchControls() {
       </div>
     </Container>
   );
+}
+
+function getQuery() {
+  try {
+    const url = location?.href ? new URL(location?.href) : undefined;
+    const query = url ? url.searchParams.get("q") : undefined;
+
+    return query;
+  } catch {
+    return undefined;
+  }
 }
 
 export default SearchControls;
