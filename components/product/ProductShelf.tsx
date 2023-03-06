@@ -1,4 +1,3 @@
-import Text from "$store/components/ui/Text.tsx";
 import ProductCard from "$store/islands/ProductCard.tsx";
 import Container from "$store/components/ui/Container.tsx";
 import type { LoaderReturnType } from "$live/std/types.ts";

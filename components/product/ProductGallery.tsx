@@ -55,7 +55,7 @@ function ProductGallery({ page }: Props) {
 
     componentsToReturn.push(
       <div class="w-full sm:px-2 list-none">
-        <ProductCard product={product} preview={previewAction} />
+        <ProductCard product={product} preview={previewAction} preload={true} />
       </div>,
     );
 
