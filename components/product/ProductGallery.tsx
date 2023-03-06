@@ -5,7 +5,7 @@ import Button from "$store/components/ui/Button.tsx";
 import ProductPreviewer from "./ProductPreviewer.tsx";
 import ProductCard from "$store/islands/ProductCard.tsx";
 import Container from "$store/components/ui/Container.tsx";
-// import Filters from "$store/components/search/Filters.tsx";
+import Filters from "$store/components/search/Filters.tsx";
 import type { LoaderReturnType } from "$live/std/types.ts";
 // import Controls from "$store/components/search/Controls.tsx";
 import type { Product, ProductListingPage } from "$live/std/commerce/types.ts";
@@ -82,7 +82,7 @@ function ProductGallery({ page }: Props) {
   return (
     <div class="flex flex-row p-6 lg:p-20 border-t-1 border-default lg:gap-6">
       <div class="hidden lg:block">
-        {/* <Filters filters={filters} /> */}
+        <Filters filters={filters} />
       </div>
 
       <Container>
