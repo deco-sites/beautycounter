@@ -2,8 +2,8 @@ import Text from "$store/components/ui/Text.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import { useEffect, useState } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
-// import ProductPreviewer from "./ProductPreviewer.tsx";
-// import ProductCard from "$store/islands/ProductCard.tsx";
+import ProductPreviewer from "./ProductPreviewer.tsx";
+import ProductCard from "$store/islands/ProductCard.tsx";
 import Container from "$store/components/ui/Container.tsx";
 // import Filters from "$store/components/search/Filters.tsx";
 import type { LoaderReturnType } from "$live/std/types.ts";
@@ -28,39 +28,39 @@ function ProductGallery({ page }: Props) {
 
   const [productPreview, setProductPreview] = useState<Previewer>();
 
-  // const renderProduct = (product: Product, index: number) => {
-  //   const previewerNumber = Math.trunc(index / DESKTOP_COLS_SIZE);
-  //   const previewAction = () => setProductPreview({ previewerNumber, product });
-  //   const closePreview = () => setProductPreview(undefined);
-  //   const shouldRenderPreviewRow = index % DESKTOP_COLS_SIZE === 0;
-  //   const componentsToReturn = [];
+  const renderProduct = (product: Product, index: number) => {
+    const previewerNumber = Math.trunc(index / DESKTOP_COLS_SIZE);
+    const previewAction = () => setProductPreview({ previewerNumber, product });
+    const closePreview = () => setProductPreview(undefined);
+    const shouldRenderPreviewRow = index % DESKTOP_COLS_SIZE === 0;
+    const componentsToReturn = [];
 
-  //   if (
-  //     shouldRenderPreviewRow &&
-  //     productPreview &&
-  //     productPreview.previewerNumber === previewerNumber
-  //   ) {
-  //     componentsToReturn.push(
-  //       <div
-  //         id={`${PRODUCT_PREVIEWER_ID}-${previewerNumber}`}
-  //         class="col-span-4 hidden md:flex lg:flex justify-center border-b-1 border-default"
-  //       >
-  //         <ProductPreviewer
-  //           closePreview={closePreview}
-  //           product={productPreview.product}
-  //         />
-  //       </div>,
-  //     );
-  //   }
+    if (
+      shouldRenderPreviewRow &&
+      productPreview &&
+      productPreview.previewerNumber === previewerNumber
+    ) {
+      componentsToReturn.push(
+        <div
+          id={`${PRODUCT_PREVIEWER_ID}-${previewerNumber}`}
+          class="col-span-4 hidden md:flex lg:flex justify-center border-b-1 border-default"
+        >
+          <ProductPreviewer
+            closePreview={closePreview}
+            product={productPreview.product}
+          />
+        </div>,
+      );
+    }
 
-  //   componentsToReturn.push(
-  //     <div class="w-full sm:px-2 list-none">
-  //       <ProductCard product={product} preview={previewAction} />
-  //     </div>,
-  //   );
+    componentsToReturn.push(
+      <div class="w-full sm:px-2 list-none">
+        <ProductCard product={product} preview={previewAction} />
+      </div>,
+    );
 
-  //   return componentsToReturn;
-  // };
+    return componentsToReturn;
+  };
 
   useEffect(() => {
     if (!productPreview) return;
@@ -88,13 +88,11 @@ function ProductGallery({ page }: Props) {
       <Container>
         {/* <Controls /> */}
 
-        {
-          /* <div
+        <div
           class={`relative grid grid-cols-2 sm:grid-cols-${DESKTOP_COLS_SIZE} gap-2 sm:gap-10 items-center`}
         >
           {page?.products?.map(renderProduct)}
-        </div> */
-        }
+        </div>
 
         <div class="flex flex-row items-center justify-center gap-2 my-4">
           <Button
