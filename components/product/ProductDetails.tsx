@@ -1,4 +1,3 @@
-import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import Text from "$store/components/ui/Text.tsx";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { formatPrice } from "$store/sdk/format.ts";
@@ -7,48 +6,57 @@ import Image from "$live/std/ui/components/Image.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import Container from "$store/components/ui/Container.tsx";
 import type { LoaderReturnType } from "$live/std/types.ts";
-import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
+import { useEffect, useRef, useState } from "preact/hooks";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import AddToCartButton from "$store/islands/AddToCartButton.tsx";
+import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 import type { ProductDetailsPage } from "$live/std/commerce/types.ts";
-import { useState } from "preact/hooks";
+import QuantitySelector from "$store/components/ui/QuantitySelector.tsx";
 
 export interface Props {
   page: LoaderReturnType<ProductDetailsPage | null>;
 }
+
+const IMAGES_MOCK = [
+  {
+    url:
+      `https://images.unsplash.com/photo-1669199205208-226158b9f9cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dnx8fHx8fDE2NzgyMjMyMzU&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080`,
+    alternateName: "nikutm-1",
+  },
+  {
+    url:
+      `https://images.unsplash.com/photo-1669199205165-fc95b5be4563?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dnx8fHx8fDE2NzgyMjMyMDc&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080`,
+    alternateName: "nikutm-2",
+  },
+  {
+    url:
+      `https://images.unsplash.com/photo-1669197800714-2dc0c62b7c09?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dnx8fHx8fDE2NzgyMjMyMjA&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080`,
+    alternateName: "nikutm-3",
+  },
+  {
+    url:
+      `https://images.unsplash.com/photo-1631268447695-25df11a9fff7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dnx8fHx8fDE2NzgyMjMyMjY&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080`,
+    alternateName: "nikutm-4",
+  },
+  {
+    url:
+      `https://images.unsplash.com/photo-1669197801223-9903835e1ded?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8dnx8fHx8fDE2NzgyMjMyMjk&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080`,
+    alternateName: "nikutm-5",
+  },
+];
 
 function ProductDetails({ page }: Props) {
   if (!page) {
     return null;
   }
 
+  const images = IMAGES_MOCK;
   const { breadcrumbList, product } = page;
   const [quantity, setQuantity] = useState(1);
   const { productID, offers, name, gtin } = product;
   const { price, listPrice, seller } = useOffer(offers);
-
-  const images = [
-    {
-      url: `https://source.unsplash.com/user/nikutm?v=${productID}`,
-      alternateName: "nikutm-1",
-    },
-    {
-      url: `https://source.unsplash.com/user/nikutm?v=${productID}-2`,
-      alternateName: "nikutm-2",
-    },
-    {
-      url: `https://source.unsplash.com/user/nikutm?v=${productID}-3`,
-      alternateName: "nikutm-3",
-    },
-    {
-      url: `https://source.unsplash.com/user/nikutm?v=${productID}-4`,
-      alternateName: "nikutm-4",
-    },
-    {
-      url: `https://source.unsplash.com/user/nikutm?v=${productID}-5`,
-      alternateName: "nikutm-5",
-    },
-  ];
+  const refCreator = () => useRef<HTMLImageElement>(null);
+  const imagesRefs = Array.from({ length: IMAGES_MOCK.length }, refCreator);
 
   const renderArrow = (id: AvailableIcons) => {
     return (
@@ -61,6 +69,16 @@ function ProductDetails({ page }: Props) {
         />
       </span>
     );
+  };
+
+  const focusOnImage = (index: number) => {
+    const image = imagesRefs[index].current;
+    if (!image) return;
+
+    const imageBounding = image.getBoundingClientRect();
+    const imagePosition = imageBounding.top + window.scrollY;
+    const scrollTop = imagePosition - 120;
+    window.scrollTo({ top: scrollTop, behavior: "smooth" });
   };
 
   return (
@@ -79,6 +97,7 @@ function ProductDetails({ page }: Props) {
                   src={img.url!}
                   alt={img.alternateName}
                   style={{ aspectRatio: "80 / 80" }}
+                  onClick={() => focusOnImage(index)}
                   sizes="(max-width: 640px) 30vw, 10vw"
                   class="opacity-50 hover:opacity-100 transition-all scroll-snap-center w-full cursor-pointer"
                   // Preload LCP image for better web vitals
@@ -95,6 +114,7 @@ function ProductDetails({ page }: Props) {
                   height={500}
                   src={img.url!}
                   alt={img.alternateName}
+                  ref={imagesRefs[index]}
                   class="scroll-snap-center w-full"
                   style={{ aspectRatio: "360 / 500" }}
                   sizes="(max-width: 640px) 50vw, 30vw"
