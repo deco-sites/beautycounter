@@ -1,3 +1,4 @@
+import { useState } from "preact/hooks";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import Button from "$store/components/ui/Button.tsx";
@@ -9,6 +10,8 @@ const desktopDimension: Dimension = { w: 2217, h: 1000 };
 const aspectRatio = ({ w, h }: Dimension) => (((h / w) * 100) + 1).toFixed(2);
 
 function Carousel({ images, preload }: Props) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   const sliderClasses = [
     "w-full",
     "bg-[#f7f7f7]",
@@ -99,6 +102,7 @@ function Carousel({ images, preload }: Props) {
       <Slider
         dot={dotIcon}
         animationDuration={5}
+        onChange={setCurrentIndex}
         class={sliderClasses.join(" ")}
       >
         {images?.map(renderImage)}
@@ -106,7 +110,7 @@ function Carousel({ images, preload }: Props) {
 
       <div class="flex lg:hidden bg-[#f7f7f7]">
         {/** TO-DO: remove this mock */}
-        {renderCallToAction(images![0], true)}
+        {renderCallToAction(images![currentIndex], true)}
       </div>
     </>
   );
