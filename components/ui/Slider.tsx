@@ -1,5 +1,5 @@
 import { tw } from "twind";
-import { useId } from "preact/hooks";
+import { useId, useRef } from "preact/hooks";
 import { animation, css, keyframes } from "twind/css";
 import { ComponentChild, toChildArray } from "preact";
 
@@ -19,38 +19,43 @@ interface Props {
   leftArrow?: ComponentChild;
   rightArrow?: ComponentChild;
   animationDuration?: number;
+  onChange?: (index: number) => void;
 }
 
-function Slider(
-  {
+function Slider(props: Props) {
+  const {
     class: _class = "",
     children,
     dot,
     leftArrow,
     rightArrow,
     animationDuration = 3,
-  }: Props,
-) {
-  const id = useId();
+    onChange,
+  } = props;
 
   if (children === undefined) {
     return null;
   }
 
+  const id = useId();
+  const containerRef = useRef<HTMLOListElement>(null);
   const childrenArray = toChildArray(children);
   const childrenLength = childrenArray.length;
+
   const toStart = tw(keyframes`
             75% { left: 0; }
             95% { left: -${Math.max(childrenLength - 1, 0)}00%; }
             98% { left: -${Math.max(childrenLength - 1, 0)}00%; }
             99% { left: 0; }
-`);
+  `);
+
   const toNext = tw(keyframes`
     75% { left: 0; }
     95% { left: 100%; }
     98% { left: 100%; }
     99% { left: 0; }
   `);
+
   const snap = tw(keyframes`
           96% { scroll-snap-align: center; }
           97% { scroll-snap-align: none; }
@@ -67,14 +72,32 @@ function Slider(
   // This is 50% - ((arrow svg height + padding) / 2)
   const arrowTopClass = tw(() => ({ top: "calc(50% - 1.25rem)" }));
 
+  // programmatically scroll to element id
+  const scrollTo = (index: number) => {
+    return (e: MouseEvent) => {
+      e.preventDefault();
+      if (onChange) onChange(index);
+
+      const elementId = generateSlideId(id, index);
+      const element = document.getElementById(elementId);
+
+      containerRef.current?.scrollTo({
+        left: element?.offsetLeft,
+        behavior: "smooth",
+      });
+    };
+  };
+
   return (
     <section
+      id={id}
       class={`relative group ${_class}`}
       aria-label="Gallery"
       data-carousel
     >
       <ol
-        class="absolute inset-0 flex scrollbar-none overflow-x-scroll scroll-smooth scroll-x-mandatory"
+        ref={containerRef}
+        class="absolute inset-0 flex scrollbar-none overflow-x-scroll overflow-y-hidden scroll-smooth scroll-x-mandatory"
         data-carousel-viewport
       >
         {childrenArray?.map((child, index) => {
@@ -88,6 +111,7 @@ function Slider(
                 <a
                   class={`absolute ${arrowTopClass} left-0 ml-2 text-white outline-none p-2`}
                   href={`#${generateSlideId(id, prev)}`}
+                  onClick={scrollTo(prev)}
                   data-carousel-prev
                 >
                   {leftArrow}
@@ -97,6 +121,7 @@ function Slider(
                 <a
                   class={`absolute ${arrowTopClass} right-0 mr-2 text-white outline-none p-2`}
                   href={`#${generateSlideId(id, next)}`}
+                  onClick={scrollTo(next)}
                   data-carousel-next
                 >
                   {rightArrow}
@@ -137,6 +162,7 @@ function Slider(
                   <a
                     href={`#${generateSlideId(id, index)}`}
                     class="focus:text-gray-600"
+                    onClick={scrollTo(index)}
                   >
                     {dot}
                   </a>

@@ -1,6 +1,6 @@
 export * from "./interfaces.ts";
 
-import { useUrlHash } from "$store/sdk/url.ts";
+import { useState } from "preact/hooks";
 import Text from "$store/components/ui/Text.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
@@ -11,7 +11,6 @@ import {
   getAlertBackground,
   getAlertButtonTheme,
   getAlertTextColor,
-  useCurrentAlertIndex,
 } from "./helpers.ts";
 
 const messages: EditableAlert[] = [
@@ -24,8 +23,7 @@ const messages: EditableAlert[] = [
 ];
 
 function Alert({ alerts = messages }: Props) {
-  const urlHash = useUrlHash();
-  const currentIndex = useCurrentAlertIndex(urlHash);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const renderAlerts = (alert: EditableAlert) => {
     const textColor = getAlertTextColor(alert.style);
@@ -74,6 +72,7 @@ function Alert({ alerts = messages }: Props) {
     <div class={sliderClasses}>
       <Slider
         animationDuration={9999}
+        onChange={setCurrentIndex}
         class="pt-10 w-full md:w-10/12"
         leftArrow={renderArrow("ChevronLeft")}
         rightArrow={renderArrow("ChevronRight")}

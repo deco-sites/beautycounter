@@ -44,12 +44,3 @@ export const getAlertBackground = (style: AlertStyle) =>
 
 export const getAlertButtonTheme = (style: AlertStyle): "dark" | "light" =>
   ALERT_COLORS[style]?.buttonTheme;
-
-export function useCurrentAlertIndex(hash?: string) {
-  if (!hash) return 0;
-
-  const hashFragments = hash.split("-");
-  const slidePart = hashFragments[1];
-
-  return Number(slidePart.replace("slide", ""));
-}

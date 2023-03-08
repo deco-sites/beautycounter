@@ -12,15 +12,16 @@ import * as $3 from "./routes/api/[...catchall].tsx";
 import * as $4 from "./routes/index.tsx";
 import * as $5 from "./routes/inspect-vscode.ts";
 import * as $$0 from "./islands/AddToCartButton.tsx";
-import * as $$1 from "./islands/HeaderButton.tsx";
-import * as $$2 from "./islands/HeaderHelper.tsx";
-import * as $$3 from "./islands/HeaderModals.tsx";
-import * as $$4 from "./islands/LiveControls.tsx";
-import * as $$5 from "./islands/ProductCard.tsx";
-import * as $$6 from "./islands/ProductDetails.tsx";
-import * as $$7 from "./islands/ProductGallery.tsx";
-import * as $$8 from "./islands/SearchControls.tsx";
-import * as $$9 from "./islands/Slick.tsx";
+import * as $$1 from "./islands/Carousel.tsx";
+import * as $$2 from "./islands/HeaderButton.tsx";
+import * as $$3 from "./islands/HeaderHelper.tsx";
+import * as $$4 from "./islands/HeaderModals.tsx";
+import * as $$5 from "./islands/LiveControls.tsx";
+import * as $$6 from "./islands/ProductCard.tsx";
+import * as $$7 from "./islands/ProductDetails.tsx";
+import * as $$8 from "./islands/ProductGallery.tsx";
+import * as $$9 from "./islands/SearchControls.tsx";
+import * as $$10 from "./islands/Slick.tsx";
 import * as $$$0 from "./sections/Advocate.tsx";
 import * as $$$1 from "./sections/Carousel.tsx";
 import * as $$$2 from "./sections/DesignSystem.story.tsx";
@@ -66,15 +67,16 @@ const manifest: DecoManifest = {
   },
   islands: {
     "./islands/AddToCartButton.tsx": $$0,
-    "./islands/HeaderButton.tsx": $$1,
-    "./islands/HeaderHelper.tsx": $$2,
-    "./islands/HeaderModals.tsx": $$3,
-    "./islands/LiveControls.tsx": $$4,
-    "./islands/ProductCard.tsx": $$5,
-    "./islands/ProductDetails.tsx": $$6,
-    "./islands/ProductGallery.tsx": $$7,
-    "./islands/SearchControls.tsx": $$8,
-    "./islands/Slick.tsx": $$9,
+    "./islands/Carousel.tsx": $$1,
+    "./islands/HeaderButton.tsx": $$2,
+    "./islands/HeaderHelper.tsx": $$3,
+    "./islands/HeaderModals.tsx": $$4,
+    "./islands/LiveControls.tsx": $$5,
+    "./islands/ProductCard.tsx": $$6,
+    "./islands/ProductDetails.tsx": $$7,
+    "./islands/ProductGallery.tsx": $$8,
+    "./islands/SearchControls.tsx": $$9,
+    "./islands/Slick.tsx": $$10,
   },
   sections: {
     "./sections/Advocate.tsx": $$$0,
